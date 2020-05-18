@@ -9,7 +9,7 @@ $recipe_ids = array(1,2);
 // Get an array of featured products from the database
 $recipes = array();
 foreach ($recipe_ids as $recipe_id) {
-    $recipe = get_recipes($recipe_id);
+    $recipe = get_recipe($recipe_id);
     $recipes[] = $recipe;
 }
 include('home_view.php');
