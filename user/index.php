@@ -15,7 +15,7 @@ switch($action) {
         $recipe_ids = array(1,2);
         $recipes = array();
         foreach ($recipe_ids as $recipe_id) {
-            $recipe = get_recipes($recipe_id);
+            $recipe = get_recipe($recipe_id);
             $recipes[] = $recipe;
         }
         include('recipe_list.php');

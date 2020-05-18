@@ -1,9 +1,9 @@
 <?php
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    header('WWW-Authenticate: Basic realm="My Realm"');
-    header('HTTP/1.0 401 Unauthorized');
-    echo 'Text to send if user hits Cancel button';
-    exit;
+    // header('WWW-Authenticate: Basic realm="My Realm"');
+    // header('HTTP/1.0 401 Unauthorized');
+    // echo 'Text to send if user hits Cancel button';
+    // exit;
 } else {
     require_once('../model/user_db.php');
 $dbuser = get_all_credentials();
