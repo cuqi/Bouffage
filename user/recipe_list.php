@@ -1,12 +1,11 @@
-<?php include 'view/header.php'; ?>
-
+<?php include '../view/head.php'; ?>
 <main class="nofloat">
-        <p>We offer free and tasty recipes for your cooking enjoyment. 
-        From exotic foods to mouth watering desserts, 
-        we are sure you`ll find something to test your culinary skills. Enjoy!
-        </p>
-        <br></br>
-            <?php foreach ($recipes as $recipe) :
+    <h1 class="top">Listing recipes</h1>
+    <p>To add your recipe, click <a href="<?php include 'recipe_add.php' ?>">here!</a></p>
+    <?php if (count($recipes) == 0) : ?>
+        <p>There are no recipes for this category.</p>
+    <?php else : ?>
+            <?php foreach ($recipes as $recipe) : 
                 $recipeID = $recipe['recipe_id'];
                 $cuisine = $recipe['cuisine'];
                 $essay = $recipe['essay'];
@@ -35,14 +34,14 @@
                     default:
                         $comp = " ";
                 }
-
                 $aggregate = $upvotes - $downvotes;
             ?>
             <div>
-                <img id="myimg" class="myimg" src="images/<?php echo htmlspecialchars($recipeID); ?>.jpg" alt="&nbsp;">
+                <img id="myimg" class="myimg" src="../images/<?php echo htmlspecialchars($recipeID); ?>.jpg" alt="&nbsp;">
                 <div id="textbox">
                     <?php echo $essay; ?> <br></br>
-                    <?php echo $preparation; ?>
+                    <?php echo $preparation; ?> <br></br>
+                    <?php echo $special_equipment; ?>
                 </div>
                 <div>
                     <p>Type of cuisine: <?php echo $cuisine; ?></p>
@@ -51,17 +50,11 @@
                     <p>Number of servings: <?php echo $servings; ?></p>
                     <p id = "<?php echo $comp?>">Difficulty level: <?php echo $complexity; ?></p>
                     <p>Rating: <?php echo $aggregate; ?></p>
-
+                    <p id = "small-text"> Posted on: <?php echo $posting_date; ?></p>
                 </div>
-            </div>
-                
-                <?php echo $posting_date; ?>
-                <?php echo $special_equipment; ?>
-                <?php echo $user_id; ?>
-            <div>
-                <?php $name = filter_input(INPUT_POST, 'name'); ?>   
             </div>
             <div id = "separator"></div>
             <?php endforeach; ?>
+    <?php endif; ?>
 </main>
-<?php include 'view/footer.php'; ?>
+<?php include '../view/foot.php'; ?>

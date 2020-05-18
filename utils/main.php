@@ -11,7 +11,7 @@ $app_path = '/' . $dirs[1] . '/' . $dirs[2] . '/';
 set_include_path($doc_root . $app_path);
 
 // Get common code
-require_once('utils/tags.php');
+require_once('tags.php');
 require_once('model/database.php');
 
 // Define some common functions
@@ -33,6 +33,5 @@ function redirect($url) {
     exit;
 }
 
-// Start session to store user and cart data
 session_start();
 ?>
