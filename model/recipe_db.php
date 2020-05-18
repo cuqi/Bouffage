@@ -1,6 +1,7 @@
 <?php
+require_once('database.php');
 // GET RECIPES - INDEX - SEGA ZA SEGA SAMO ID 1
-function get_recipes($recipeID) {
+function get_recipe($recipeID) {
     global $db;
     $query = '
         SELECT *
@@ -19,7 +20,7 @@ function get_recipes($recipeID) {
     }
 }
 
-function get_all() {
+function get_all_recipes() {
     global $db;
     $query = '
         SELECT *
