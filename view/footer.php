@@ -1,8 +1,7 @@
-<div id="footer">
-            <p class="copyright">
+<footer>
+            <p id="copyright">
                 &copy; <?php echo date("Y"); ?> Bouffage, Inc.
             </p>
-        </div>
-    </div><!-- end page -->
-    </body>
+</footer>
+</body>
 </html>
