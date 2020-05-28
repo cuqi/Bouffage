@@ -7,7 +7,7 @@
 class="close" title="Close Modal">&times;</span>
 
   <!-- Modal Content -->
-  <form class="modal-content animate" id = "container" action="/bouffage/sign in/create_user.php" method="POST">
+  <form class="modal-content animate" id = "container" action="/bouffage/sign%20in  /create_user.php" method="POST">
   <section class= "row">
     <div class="column">
   <div class="container left">
@@ -18,13 +18,20 @@ class="close" title="Close Modal">&times;</span>
       <input type="text" placeholder="Enter Username" name="username" required>
       <br>
       <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="password" placeholder="Enter Password" name="password1" required>
+      <label for="password2"><b>Confirm Password</b></label>
+      <input type="password" placeholder="Confirm Password" name="password2" required>
     </div>
 
     <div class="column">
   <div class="container left">
       <h1>i am verry sorry to hear that you are not a part of this website</h1>
       <h2>Please create an account</h2>
+
+ //Stuff for inputting a profile picture
+</div class="right">
+  <button type="submit">Sign up</button>
+
     </div>
 
 
