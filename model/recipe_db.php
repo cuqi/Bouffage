@@ -34,6 +34,37 @@ function get_all_recipes() {
     return $result;
 }
 
+function get_all_recipe_ids()
+{
+    global $db;
+    $query = '
+        SELECT recipe_id
+        FROM recipe
+    ';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function get_all_recipes_from_user($userID)
+{
+    global $db;
+    $query = '
+        SELECT recipe_id
+        FROM recipe
+        WHERE user_id = :userID
+    ';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userID', $userID);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+
 function add_recipe($user_id, $code, $name, $description,
         $price, $discount_percent) {
     global $db;
