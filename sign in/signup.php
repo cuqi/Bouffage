@@ -25,7 +25,11 @@ class="close" title="Close Modal">&times;</span>
   <div class="container left">
       <h1>i am verry sorry to hear that you are not a part of this website</h1>
       <h2>Please create an account</h2>
-    </div>
+      <div class="column">
+  </div class="right">
+  <button type="submit">Sign up</button>
+
+  </div>
 
 
 
@@ -34,6 +38,7 @@ class="close" title="Close Modal">&times;</span>
 <hr>
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('signup').style.display='none'" class="cancelbtn">Cancel</button>
+
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>

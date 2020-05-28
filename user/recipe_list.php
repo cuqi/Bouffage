@@ -1,7 +1,7 @@
 <?php include '../view/head.php'; ?>
 <main class="nofloat">
     <h1 class="top">Listing recipes</h1>
-    <p>To add your recipe, click <a href="<?php include 'recipe_add.php' ?>">here!</a></p>
+    <p>To add your recipe, click</p>
     <?php if (count($recipes) == 0) : ?>
         <p>There are no recipes for this category.</p>
     <?php else : ?>
