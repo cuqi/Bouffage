@@ -1,15 +1,15 @@
 <?php
     require_once('../model/user_db.php');
-
+    require_once('../utils/main.php');
 $useremail = $_POST['email'];
 $userpassword = $_POST['password'];    
-
 $success = is_valid_user($useremail, $userpassword);
 
 if($success)
 {
-     header("Location: http://localhost/bouffage");
-     exit();
+    $_SESSION['user'] = $useremail;
+    header("Location: http://localhost/bouffage");
+    exit();
 }
 // else 
 // {
