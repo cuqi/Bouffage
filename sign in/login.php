@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <link rel="stylesheet" type="text/css"
-              href="modal.css" />
+              href="./modal.css" />
 <!-- Button to open the modal login form -->
-<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+<!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button> -->
 
 <!-- The Modal -->
-<div id="id01" class="modal">
+<div id="id01" class="modal" style="display: block">
   <span onclick="document.getElementById('id01').style.display='none'"
 class="close" title="Close Modal">&times;</span>
 
@@ -16,8 +15,8 @@ class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter email" name="email" required>
       <br>
 
       <label for="password"><b>Password</b></label>

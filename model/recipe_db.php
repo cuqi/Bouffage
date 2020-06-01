@@ -34,63 +34,59 @@ function get_all_recipes() {
     return $result;
 }
 
-function add_recipe($recipe_id, $cuisine, $essay, $preparation,
-        $prep_time, $cook_time, $servings, $upvotes, $downvotes, $posting_date, $special_equipment, $user_id) {
+function get_all_recipe_ids()
+{
     global $db;
-    $query = 'INSERT INTO recipe
-                 (recipe_id, cuisine, essay, preparation, prep_time,
-                  cook_time, servings, upvotes, downvotes, posting_date, special_equipment, user_id)
-              VALUES
-                 (:recipe_id, :cuisine, :essay, :preparation, :prep_time,
-                  :cook_time, :servings, :upvotes, :downvotes, :posting_date, :special_equipment, :user_id)';
-    try {
-        $statement = $db->prepare($query);
-        $statement->bindValue(':recipe_id', $recipe_id);
-        $statement->bindValue(':cuisine', $cuisine);
-        $statement->bindValue(':essay', $essay);
-        $statement->bindValue(':preparation', $preparation);
-        $statement->bindValue(':prep_time', $prep_time);
-        $statement->bindValue(':cook_time', $cook_time);
-        $statement->bindValue(':servings', $servings);
-        $statement->bindValue(':upvotes', $upvotes);
-        $statement->bindValue(':downvotes', $downvotes);
-        $statement->bindValue(':posting_date', $posting_date);
-        $statement->bindValue(':special_equipment', $special_equipment);
-        $statement->bindValue(':user_id', $user_id);
-
-        $statement->execute();
-        $statement->closeCursor();
-
-        // Get the last recipe ID that was automatically generated
-        $recipe_id = $db->lastInsertId();
-        return $recipe_id;
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
-        display_db_error($error_message);
-    }
+    $query = '
+        SELECT recipe_id
+        FROM recipe
+    ';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
 }
 
-function add_one($recipe_id, $essay, $user_id) {
+function get_all_recipes_from_user($userID)
+{
     global $db;
-    $query = 'INSERT INTO recipe
-                 (recipe_id, essay, user_id)
-              VALUES
-                 (:recipe_id, :essay, :user_id)';
-    try {
-        $statement = $db->prepare($query);
-        $statement->bindValue(':essay', $essay);
-        $statement->bindValue(':recipe_id', $recipe_id);
-        $statement->bindValue(':user_id', $user_id);
-        $statement->execute();
-        $statement->closeCursor();
-
-        // Get the last recipe ID that was automatically generated
-        $recipe_id = $db->lastInsertId();
-        return $recipe_id;
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
-        display_db_error($error_message);
-    }
+    $query = '
+        SELECT recipe_id
+        FROM recipe
+        WHERE user_id = :userID
+    ';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':userID', $userID);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
 }
+
+
+// function add_recipe($user_id, $code, $name, $description,
+//         $price, $discount_percent) {
+//     global $db;
+//     $query = 'INSERT INTO recipe
+//                  (recipe_id, essay, user_id)
+//               VALUES
+//                  (:recipe_id, :essay, :user_id)';
+//     try {
+//         $statement = $db->prepare($query);
+//         $statement->bindValue(':essay', $essay);
+//         $statement->bindValue(':recipe_id', $recipe_id);
+//         $statement->bindValue(':user_id', $user_id);
+//         $statement->execute();
+//         $statement->closeCursor();
+
+//         // Get the last recipe ID that was automatically generated
+//         $recipe_id = $db->lastInsertId();
+//         return $recipe_id;
+//     } catch (PDOException $e) {
+//         $error_message = $e->getMessage();
+//         display_db_error($error_message);
+//     }
+// }
 
 ?>

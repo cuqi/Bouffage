@@ -1,4 +1,9 @@
-<?php include 'view/header.php'; ?>
+<?php 
+include 'view/header.php'; 
+include 'view/sidebar.php';
+
+//require_once('model/comment_db.php');
+require_once('model/user_db.php');?>
 
 <main class="nofloat">
         <p>We offer free and tasty recipes for your cooking enjoyment. 
@@ -40,6 +45,26 @@
             ?>
             <div>
                 <img id="myimg" class="myimg" src="images/<?php echo htmlspecialchars($recipeID); ?>.jpg" alt="&nbsp;">
+                <div>
+                <form action="./user/index.php" method="POST">
+                <input type="hidden" name="listtheserecpes" value= "<?php echo $user_id?>">
+                 <button type="submit"><?php echo get_username($user_id)['username'] ?></button>
+                </form>               
+                </div>
+                <div>
+                    <form action="./recipe/voting.php" method="POST">
+                        <label>
+                        <input type="radio" name="vote" id="upvote" value="u%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
+                        <img src="./images/uvote.png" alt="placeholder">
+                        </label>
+
+                        <label>
+                        <input type="radio" name="vote" id="downvote" value="<d%%?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
+                        <img src="./images/dvote.png" alt="placeholder">
+                        </label>
+
+                    </form>
+                </div>
                 <div id="textbox">
                     <?php echo $essay; ?> <br></br>
                     <?php echo $preparation; ?>
@@ -51,13 +76,16 @@
                     <p>Number of servings: <?php echo $servings; ?></p>
                     <p id = "<?php echo $comp?>">Difficulty level: <?php echo $complexity; ?></p>
                     <p>Rating: <?php echo $aggregate; ?></p>
-
+                    <p>Posted on: <?php echo $posting_date; ?></p>
+                    <p>Special equipment: <?php echo $special_equipment; ?></p>
                 </div>
             </div>
-                
-                <?php echo $posting_date; ?>
-                <?php echo $special_equipment; ?>
-                <?php echo $user_id; ?>
+            <div>
+            <form action="./recipe/index.php" method="POST">
+                <input type="hidden" name="listthecomments" value= "<?php echo $recipeID?>">
+                 <button type="submit"><?php echo "yes"; ?></button>
+            </form>
+            </div>
             <div>
                 <?php $name = filter_input(INPUT_POST, 'name'); ?>   
             </div>
