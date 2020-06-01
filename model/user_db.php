@@ -89,6 +89,22 @@ function is_valid_user($entered_email, $entered_password) {
     return $valid;
 }
 
+function is_valid_email($entered_email) {
+    global $db;
+    $query = '
+        SELECT email
+        FROM user
+        WHERE email = :entered_email
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':entered_email', $entered_email);
+    $statement->execute();
+    $valid = ($statement->rowCount() == 1);
+    $statement->closeCursor();
+    return $valid;
+}
+
 function add_user_to_db($email, $password, $username) {
     global $db;
     $password = sha1($email . $password);
