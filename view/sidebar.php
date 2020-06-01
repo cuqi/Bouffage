@@ -1,9 +1,6 @@
 
 <ul>
     <li>
-        <a href="http://localhost/bouffage/user"> List Recipes </a>
-    </li>
-    <li>
         <a href="http://localhost/bouffage/user/recipe_add.php"> Add Recipes </a>
     </li>
     <?php

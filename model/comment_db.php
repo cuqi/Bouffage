@@ -49,7 +49,27 @@ function get_comment_by_recipe($commentonrecipeID) {
         $statement = $db->prepare($query);
         $statement->bindValue(':commentonrecipeID', $commentonrecipeID);
         $statement->execute();
-        $result = $statement->fetch();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+function get_replies_from_comment($replyoncomment) { //replyoncomment the ID from the comment that has replies 
+    global $db;
+    $query = '
+        SELECT *
+        FROM comment c
+        WHERE reply_comment_id = :replyoncomment
+        ORDER BY comment_posted';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':replyoncomment', $replyoncomment);
+        $statement->execute();
+        $result = $statement->fetchAll();
         $statement->closeCursor();
         return $result;
     } catch (PDOException $e) {
