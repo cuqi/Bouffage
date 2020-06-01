@@ -8,7 +8,7 @@ $success = is_valid_user($useremail, $userpassword);
 
 if($success)
 {
-     header("Location: http://localhost/bouffage/index.php");
+     header("Location: http://localhost/bouffage");
      exit();
 }
 // else 

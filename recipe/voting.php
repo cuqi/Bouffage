@@ -16,6 +16,7 @@ function bothDownvote($user, $recipe)
 if (isset($_SESSION['user'])) 
 {
     $connected_user = $_SESSION['user'];
+    echo "inside session";
 }
 else
 {
@@ -31,7 +32,7 @@ if ($data[0] == "u")
 {
     bothUpvote($data[1], $data[2]);
 }
-else
+else 
 {
     bothDownvote($data[1], $data[2]);
 }

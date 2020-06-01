@@ -1,4 +1,8 @@
-<?php include 'view/header.php'; 
+<?php 
+include 'view/header.php'; 
+include 'view/sidebar.php';
+
+//require_once('model/comment_db.php');
 require_once('model/user_db.php');?>
 
 <main class="nofloat">
@@ -61,8 +65,6 @@ require_once('model/user_db.php');?>
 
                     </form>
                 </div>
-
-
                 <div id="textbox">
                     <?php echo $essay; ?> <br></br>
                     <?php echo $preparation; ?>
@@ -74,13 +76,16 @@ require_once('model/user_db.php');?>
                     <p>Number of servings: <?php echo $servings; ?></p>
                     <p id = "<?php echo $comp?>">Difficulty level: <?php echo $complexity; ?></p>
                     <p>Rating: <?php echo $aggregate; ?></p>
-
+                    <p>Posted on: <?php echo $posting_date; ?></p>
+                    <p>Special equipment: <?php echo $special_equipment; ?></p>
                 </div>
             </div>
-                
-                <?php echo $posting_date; ?>
-                <?php echo $special_equipment; ?>
-                
+            <div>
+            <form action="./recipe/index.php" method="POST">
+                <input type="hidden" name="listthecomments" value= "<?php echo $recipeID?>">
+                 <button type="submit"><?php echo "yes"; ?></button>
+            </form>
+            </div>
             <div>
                 <?php $name = filter_input(INPUT_POST, 'name'); ?>   
             </div>

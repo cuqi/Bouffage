@@ -8,11 +8,10 @@ require_once('../model/database.php');
     $recipes = array();
     $num = 0;
     foreach ($recipe_ids as $recipe_id) {
-    $recipe_id = $recipe_ids[$num]['recipe_id'];
-    $recipe = get_recipe($recipe_id);
-    $recipes[] = $recipe;
-    $num +=1;
-}
+        $recipe_id = $recipe_ids[$num]['recipe_id'];
+        $recipe = get_recipe($recipe_id);
+        $recipes[] = $recipe;
+        $num +=1;
+    }
     include('recipe_list.php');
-
 ?>

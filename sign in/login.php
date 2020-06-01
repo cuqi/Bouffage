@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <link rel="stylesheet" type="text/css"
               href="./modal.css" />
 <!-- Button to open the modal login form -->
