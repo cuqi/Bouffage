@@ -2,18 +2,6 @@
 require_once('../model/vote_db.php');
 require_once('../utils/main.php');
 
-function bothUpvote($user, $recipe)
-{
-    user_upvote($user);
-    recipe_upvote($recipe);
-}
-
-function bothDownvote($user, $recipe)
-{
-    user_downvote($user);
-    recipe_downvote($recipe);
-} 
-
 if (isset($_SESSION['user'])) 
 {
     $connected_user = $_SESSION['user'];
@@ -26,18 +14,68 @@ else
 
 
 
-
 $data = $_POST['vote'];
 $data = explode("%%", $data);
+$recipe = $data[2];
+$user = $data[1];
+$hashevoted = has_user_voted($user, $recipe );
+if($hashevoted != NULL)
+{
+    $hashevoted = $hashevoted['u_or_d'];
+}
+
 if ($data[0] == "u")
 {
-    bothUpvote($data[1], $data[2]);
+    if($hashevoted == "u")
+    {
+        recipe_remove_upvote($recipe);
+        user_remove_upvote($user);
+        user_removed_vote_recipe($user, $recipe);
+    }
+    elseif($hashevoted == "d")
+    {
+        recipe_remove_downvote($recipe);
+        user_remove_downvote($user);
+
+        recipe_upvote($recipe);
+        user_upvote($user);
+
+        user_updated_vote_recipe($user, $recipe, $data[0]);
+    }
+    else
+    {
+        recipe_upvote($recipe);
+        user_upvote($user);
+        user_voted_recipe($user, $recipe, $data[0]);
+    }
+
 }
 else 
 {
-    bothDownvote($data[1], $data[2]);
+    if($hashevoted == "d")
+    {
+        recipe_remove_downvote($recipe);
+        user_remove_downvote($user);
+        user_removed_vote_recipe($user, $recipe);
+    }
+    elseif($hashevoted == "u")
+    {
+        recipe_remove_upvote($recipe);
+        user_remove_upvote($user);
+
+        recipe_downvote($recipe);
+        user_downvote($user);
+
+        user_updated_vote_recipe($user, $recipe, $data[0]);
+    }
+    else
+    {
+        recipe_downvote($recipe);
+        user_downvote($user);
+        user_voted_recipe($user, $recipe, $data[0]);
+    }
 }
 
-
+header("Location: http://localhost/bouffage");
 
 ?>

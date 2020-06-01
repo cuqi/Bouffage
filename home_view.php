@@ -64,7 +64,7 @@ require_once('model/user_db.php');?>
                         </label>
 
                         <label>
-                        <input type="radio" name="vote" id="downvote" value="<d%%?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
+                        <input type="radio" name="vote" id="downvote" value="d%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
                         <img src="./images/dvote.png" alt="placeholder">
                         </label>
 
