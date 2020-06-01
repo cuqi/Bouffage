@@ -3,15 +3,14 @@
 require_once('../utils/main.php');
 require_once('../model/recipe_db.php');
 require_once('../model/user_db.php');
-require_once('../utils/secure_conn.php');
+// require_once('../utils/secure_conn.php');
 
-require_once('../model/fields.php');
-require_once('../model/validate.php');
+require_once('../helpers/fields.php');
+require_once('../helpers/validate.php');
 
 if(isset($_SESSION['user'])){
 
     echo $_SESSION['user'];
-    include('login.php');
 }
 
 $action = $_POST['whatdo'];

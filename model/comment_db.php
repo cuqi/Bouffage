@@ -64,7 +64,8 @@ function get_replies_from_comment($replyoncomment) { //replyoncomment the ID fro
         SELECT *
         FROM comment c
         WHERE reply_comment_id = :replyoncomment
-        ORDER BY comment_posted';
+        ORDER BY comment_posted
+        ';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':replyoncomment', $replyoncomment);

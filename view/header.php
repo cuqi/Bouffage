@@ -4,7 +4,7 @@
     <head>
         <title>Bouffage</title>
         <link rel="stylesheet" type="text/css"
-              href="<?php echo $app_path ?>main.css" />
+              href="<?php echo $app_path ?>/main.css" />
     </head>
 
     <body>

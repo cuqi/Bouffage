@@ -1,5 +1,6 @@
 <?php
 require_once('../model/vote_db.php');
+require_once('../utils/main.php');
 
 function bothUpvote($user, $recipe)
 {

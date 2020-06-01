@@ -101,7 +101,7 @@ require_once('model/user_db.php');?>
                     $replies = get_replies_from_comment($comment['comment_id']);
 
                     ?>
-                    <div id="textbox">
+                    <div id="textbox" class="comment">
                     <form action="./user/index.php" method="POST">
                     <input type="hidden" name="listtheserecpes" value= "<?php echo $cuser?>">
                     <button type="submit"><?php echo get_username($cuser)['username'] ?></button>
@@ -120,7 +120,7 @@ require_once('model/user_db.php');?>
                         $rtime = $reply['comment_posted'];
                         $rcritique = $reply['critique'];
                         ?>
-                        <div id="textbox">
+                        <div class="reply">
                         <form action="./user/index.php" method="POST">
                         <input type="hidden" name="listtheserecpes" value= "<?php echo $cuser?>">
                         <button type="submit"><?php echo get_username($cuser)['username'] ?></button>
@@ -130,10 +130,10 @@ require_once('model/user_db.php');?>
                             <?php echo $rtime; ?>
 
                         </div>
+                        <br>
                         <?php endforeach; ?>
 
                     </div>
-                    <br></br>
                     <?php endforeach; ?>
 
 
