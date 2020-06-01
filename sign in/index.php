@@ -16,16 +16,16 @@ if(isset($_SESSION['user'])){
 
 $action = $_POST['whatdo'];
 
-if ($action == NULL){
-    $action = $_GET['whatdo'];
+// if ($action == NULL){
+//     $action = $_GET['whatdo'];
     if ($action == NULL) {
         $action = 'login';
-        // if (isset($_SESSION['user'])) {
-        //     echo "yessir";
-        //     $action = 'my_account';
-        // }
+        if (isset($_SESSION['user'])) {
+            echo "yessir";
+            $action = 'my_account';
+        }
     }
-}
+
 
 switch ($action) {
     case 'login':
@@ -38,10 +38,10 @@ switch ($action) {
         echo 'yes';
         unset($_SESSION['user']);
         redirect('..');
-        break;
+    break;
     default:
-        // display_error("Unknown account action: " . $action);
-        break;
+        display_error("Unknown account action: " . $action);
+    break;
 }
 
 ?>
