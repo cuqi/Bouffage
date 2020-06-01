@@ -4,7 +4,6 @@ include 'view/sidebar.php';
 
 require_once('model/comment_db.php');
 require_once('model/user_db.php');?>
-
 <main class="nofloat">
         <p>We offer free and tasty recipes for your cooking enjoyment. 
         From exotic foods to mouth watering desserts, 
