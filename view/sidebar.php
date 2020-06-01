@@ -1,8 +1,4 @@
-
 <ul>
-    <li>
-        <a href="http://localhost/bouffage/user"> List Recipes </a>
-    </li>
     <li>
         <a href="http://localhost/bouffage/user/recipe_add.php"> Add Recipes </a>
     </li>
@@ -13,14 +9,27 @@
             $login_url = 'sign in/login.php';
 
             $logout_url = $account_url . '?sign%20in=logout';
+
+            $toindex = $app_path . 'sign in';
             echo $login_url;
-            echo session_id();
+            
+            
             if (isset($_SESSION['user'])) :
             ?>
-            <li><a href="<?php echo $account_url; ?>">My Account</a></li>
-            <li><a href="<?php echo $logout_url; ?>">Logout</a>
+            <li>
+                <form action="./sign in/index.php" method="POST">
+                    <input type="hidden" name="whatdo" value= "my_account">
+                    <button type="submit">My Account</button>
+                </form>
+            </li>
             <?php else: ?>
-                <li><a href="<?php echo $login_url; ?>">Login</a></li>
+                <li>
+                <form action="./sign in/index.php" method="POST">
+                    <input type="hidden" name="whatdo" value= "login">
+                    <button type="submit">Login</button>
+                </form>
+
+                </li>
             <?php endif; ?>
         <li>
             <a href="<?php echo $app_path; ?>">Home</a>

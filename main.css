@@ -1,13 +1,13 @@
 /* the styles for the HTML elements */
 html {
-    background-color: rgb(192, 192, 192);
+    background-color: navy;
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
-    width: 860px;
+    width: 80%;
     margin: 0 auto;
     padding: 0 2em;
-    background-color: white;
+    background-color: navajowhite;
     border: 1px solid black;
 }
 header {
@@ -20,7 +20,7 @@ header h1 {
 main {
     margin-bottom: 1em;
     float: left;
-    width: 860px;
+    width: auto;
 }
 aside {
     float: left;
@@ -92,7 +92,19 @@ td, th {
     margin: 0;
     padding: .25em;
 }
-
+.comment
+{
+    padding: 10px;
+    border: 5px solid  rgb(94, 94, 94);
+    margin: 10px;
+}
+.reply
+{
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+    color: rebeccapurple;
+}
 
 /* the styles for the div tags that divide the page into sections */
 #left_column {

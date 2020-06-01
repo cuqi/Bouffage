@@ -39,6 +39,24 @@ function get_username($userID) {
     }
 }
 
+function get_username_from_email($email) {
+    global $db;
+    $query = '
+        SELECT username
+        FROM user u
+        WHERE email = :email';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
 function get_all_users() {
     global $db;
     $query = '
@@ -65,6 +83,22 @@ function is_valid_user($entered_email, $entered_password) {
     $statement = $db->prepare($query);
     $statement->bindValue(':entered_email', $entered_email);
     $statement->bindValue(':password', $password);
+    $statement->execute();
+    $valid = ($statement->rowCount() == 1);
+    $statement->closeCursor();
+    return $valid;
+}
+
+function is_valid_email($entered_email) {
+    global $db;
+    $query = '
+        SELECT email
+        FROM user
+        WHERE email = :entered_email
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':entered_email', $entered_email);
     $statement->execute();
     $valid = ($statement->rowCount() == 1);
     $statement->closeCursor();

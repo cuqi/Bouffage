@@ -1,4 +1,10 @@
 <?php include '../view/head.php'; ?>
+<p><?php 
+    $name = "Hello";
+    $_SESSION['yes'] = $name; 
+    echo $_SESSION['yes'];
+
+?></p>
 <main class="nofloat">
     <h1 class="top">Listing recipes</h1>
     <p>To add your recipe, click</p>
