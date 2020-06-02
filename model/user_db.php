@@ -57,6 +57,26 @@ function get_username_from_email($email) {
         display_db_error($error_message);
     }
 }
+
+function get_id_from_email($email) {
+    global $db;
+    $query = '
+        SELECT user_id
+        FROM user u
+        WHERE email = :email';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
 function get_all_users() {
     global $db;
     $query = '

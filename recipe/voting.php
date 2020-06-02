@@ -1,5 +1,6 @@
 <?php
 require_once('../model/vote_db.php');
+require_once('../model/user_db.php');
 require_once('../utils/main.php');
 
 if (isset($_SESSION['user'])) 
@@ -17,7 +18,7 @@ else
 $data = $_POST['vote'];
 $data = explode("%%", $data);
 $recipe = $data[2];
-$user = $data[1];
+$user = get_id_from_email($connected_user)['user_id'];
 $hashevoted = has_user_voted($user, $recipe );
 if($hashevoted != NULL)
 {
