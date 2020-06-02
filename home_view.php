@@ -58,17 +58,17 @@ require_once('model/user_db.php');?>
                 </div>
                 <div>
                     <form action="./recipe/voting.php" method="POST">
-                        <label>
+                        <label id = "arrow">
                         <input type="radio" name="vote" id="upvote" value="u%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
-                        <img src="./images/uvote.png" alt="placeholder">
+                        <img id = "pic1" src="./images/uvote.png" alt="placeholder">
                         </label>
 
-                        <label>
+                        <label id = "arrow">
                         <input type="radio" name="vote" id="downvote" value="d%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
-                        <img src="./images/dvote.png" alt="placeholder">
+                        <img id = "pic2" src="./images/dvote.png" alt="placeholder">
                         </label>
-
                     </form>
+                    <br></br>
                 </div>
                 <div id="textbox">
                     <?php echo $essay; ?> <br></br>
