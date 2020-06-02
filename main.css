@@ -330,4 +330,20 @@ td, th {
     outline: 5px solid rgb(179, 255, 0);
 }
 
+#arrow {
+    padding-right: 0em;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    text-align: right;
+    float: left;
+}
+
+#pic1 {
+    outline: 2px solid hotpink;
+    
+}
+
+#pic2 {
+    outline: 2px solid hotpink;
+}
 
