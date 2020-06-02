@@ -65,16 +65,16 @@ function get_all_recipes_from_user($userID)
 }
 
 
-function add_recipe($user_id, $essay, $recipe_id) {
+function add_recipe($user_id, $essay, $cuisine) {
     global $db;
     $query = 'INSERT INTO recipe
-                 (recipe_id, essay, user_id)
+                 (cuisine, essay, user_id)
               VALUES
-                 (:recipe_id, :essay, :user_id)';
+                 (:cuisine, :essay, :user_id)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':essay', $essay);
-        $statement->bindValue(':recipe_id', $recipe_id);
+        $statement->bindValue(':cuisine', $cuisine);
         $statement->bindValue(':user_id', $user_id);
         $statement->execute();
         $statement->closeCursor();
