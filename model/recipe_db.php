@@ -1,6 +1,6 @@
 <?php
 require_once('database.php');
-// GET RECIPES - INDEX - SEGA ZA SEGA SAMO ID 1
+
 function get_recipe($recipeID) {
     global $db;
     $query = '
@@ -64,20 +64,72 @@ function get_all_recipes_from_user($userID)
     return $result;
 }
 
-
-function add_recipe($title, $cuisine, $essay, $preparation, $user_id) {
+function get_cuisine()
+{
     global $db;
-    $query = 'INSERT INTO recipe
-                 (title, cuisine, essay, preparation, user_id)
+    $query = '
+        SELECT cuisine
+        FROM recipe
+    ';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+}
+
+function get_cuisine_enum()
+{
+    global $db;
+    $query = "
+        SELECT column_type FROM information_schema.columns 
+        WHERE table_name = 'recipe' AND column_name = 'cuisine';
+    ";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    $result = str_replace(array("set('", "')", "''"), array('', '', "'"), $result);
+    $result = implode("", $result);
+    $arr = explode("','", $result);
+    return $arr;
+}
+
+function get_complexity_enum()
+{
+    global $db;
+    $query = "
+        SELECT column_type FROM information_schema.columns 
+        WHERE table_name = 'recipe' AND column_name = 'complexity';
+    ";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    $result = str_replace(array("set('", "')", "''"), array('', '', "'"), $result);
+    $result = implode("", $result);
+    $arr = explode("','", $result);
+    return $arr;
+}
+
+function add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_time, $servings, $complexity, $special_equipment, $user_id) {
+    global $db;
+    $query = 'INSERT INTO recipe 
+                (title, cuisine, essay, preparation, prep_time, cook_time, servings, complexity, special_equipment, user_id)
               VALUES
-                 (:title, :cuisine, :essay, :preparation, :user_id)';
+                 (:title, :cuisine, :essay, :preparation, :prep_time, :cook_time, :servings, :complexity, :special_equipment, :user_id)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':title', $title);
-        $statement->bindValue(':essay', $essay);
         $statement->bindValue(':cuisine', $cuisine);
-        $statement->bindValue(':user_id', $user_id);
+        $statement->bindValue(':essay', $essay);
         $statement->bindValue(':preparation', $preparation);
+        $statement->bindValue(':prep_time', $prep_time);
+        $statement->bindValue(':cook_time', $cook_time);
+        $statement->bindValue(':servings', $servings);
+        $statement->bindValue(':complexity', $complexity);
+        $statement->bindValue(':special_equipment', $special_equipment);
+        $statement->bindValue(':user_id', $user_id);
         $statement->execute();
         $statement->closeCursor();
 

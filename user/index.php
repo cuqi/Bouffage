@@ -15,5 +15,5 @@ $recipes[] = $recipe;
 $num +=1;
 }
 include('recipe_list.php');
-    
+
 ?>
