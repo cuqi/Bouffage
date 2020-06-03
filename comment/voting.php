@@ -17,10 +17,10 @@ else
 
 $data = $_POST['vote'];
 $data = explode("%%", $data);
-$recipe = $data[2];
+$comment = $data[2];
 $user = $data[1];
 $userme = get_id_from_email($connected_user)['user_id'];
-$hashevoted = has_user_voted($userme, $recipe );
+$hashevoted = has_user_voted_comment($userme, $comment );
 if($hashevoted != NULL)
 {
     $hashevoted = $hashevoted['u_or_d'];
@@ -30,25 +30,25 @@ if ($data[0] == "u")
 {
     if($hashevoted == "u")
     {
-        recipe_remove_upvote($recipe);
+        comment_remove_upvote($comment);
         user_remove_upvote($user);
-        user_removed_vote_recipe($userme, $recipe);
+        user_removed_vote_comment($userme, $comment);
     }
     elseif($hashevoted == "d")
     {
-        recipe_remove_downvote($recipe);
+        comment_remove_downvote($comment);
         user_remove_downvote($user);
 
-        recipe_upvote($recipe);
+        comment_upvote($comment);
         user_upvote($user);
 
-        user_updated_vote_recipe($userme, $recipe, $data[0]);
+        user_updated_vote_comment($userme, $comment, $data[0]);
     }
     else
     {
-        recipe_upvote($recipe);
+        comment_upvote($comment);
         user_upvote($user);
-        user_voted_recipe($userme, $recipe, $data[0]);
+        user_voted_comment($userme, $comment, $data[0]);
     }
 
 }
@@ -56,25 +56,25 @@ else
 {
     if($hashevoted == "d")
     {
-        recipe_remove_downvote($recipe);
+        comment_remove_downvote($comment);
         user_remove_downvote($user);
-        user_removed_vote_recipe($userme, $recipe);
+        user_removed_vote_comment($userme, $comment);
     }
     elseif($hashevoted == "u")
     {
-        recipe_remove_upvote($recipe);
+        comment_remove_upvote($comment);
         user_remove_upvote($user);
 
-        recipe_downvote($recipe);
+        comment_downvote($comment);
         user_downvote($user);
 
-        user_updated_vote_recipe($userme, $recipe, $data[0]);
+        user_updated_vote_comment($userme, $comment, $data[0]);
     }
     else
     {
-        recipe_downvote($recipe);
+        comment_downvote($comment);
         user_downvote($user);
-        user_voted_recipe($userme, $recipe, $data[0]);
+        user_voted_comment($userme, $comment, $data[0]);
     }
 }
 

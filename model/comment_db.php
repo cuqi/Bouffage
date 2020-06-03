@@ -95,4 +95,54 @@ function get_all_comments_from_user($commentID)
     return $result;
 }
 
+function add_comment($critique, $typeq, $commentinguser, $recipecommented) {
+    global $db;
+    $query = "INSERT INTO `comment` 
+                 (`critique`, `type`, `user_commented_id`, `comment_on_recipe_id`)
+              VALUES
+                 (:critique, :typeq, :commentinguser, :recipecommented)";
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':critique', $critique);
+        $statement->bindValue(':typeq', $typeq);
+        $statement->bindValue(':commentinguser', $commentinguser);
+        $statement->bindValue(':recipecommented', $recipecommented);
+        $statement->execute();
+        $statement->closeCursor();
+
+        // Get the last recipe ID that was automatically generated
+        $recipe_id = $db->lastInsertId();
+        return $recipe_id;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+function add_reply($critique, $typeq, $commentinguser, $recipecommented, $commentreplied) {
+    global $db;
+    $query = 'INSERT INTO `comment` 
+                (`critique`, `type`, `user_commented_id`, `comment_on_recipe_id`, `reply_comment_id`)
+              VALUES
+                (:critique, :typeq, :commentinguser, :recipecommented, :commentreplied)';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':critique', $critique);
+        $statement->bindValue(':typeq', $typeq);
+        $statement->bindValue(':commentinguser', $commentinguser);
+        $statement->bindValue(':recipecommented', $recipecommented);
+        $statement->bindValue(':commentreplied', $commentreplied);
+        $statement->execute();
+        $statement->closeCursor();
+
+        // Get the last recipe ID that was automatically generated
+        $recipe_id = $db->lastInsertId();
+        return $recipe_id;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+
 ?>
