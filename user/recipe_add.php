@@ -5,8 +5,10 @@ require_once('../utils/main.php');
 require_once('../model/recipe_db.php');
 require_once('../model/user_db.php');
 
-if (isset($_SESSION['user'])) {
 
+include 'upload.php';
+
+if (isset($_SESSION['user'])) {
     if (isset($_POST['title'])) {
         $title = $_POST['title'];
         $cuisine = $_POST['cuisine'];
@@ -21,12 +23,11 @@ if (isset($_SESSION['user'])) {
         $useremail = $_SESSION['user'];
         $user_id = get_id_from_email($useremail)['user_id'];
 
-        //include("upload.php");
-        add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_time, $servings, $complexity, $special_equipment, $user_id); 
+
+        add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_time, $servings, $complexity, $special_equipment, $user_id);
         header("Location: http://localhost/bouffage/");
     }
-}
-else {
+} else {
     header("Location: http://localhost/bouffage/sign%20in/login.php");
 }
 
@@ -91,14 +92,17 @@ else {
         </textarea>
         <br>
 
-        
-        <!-- <label>Select image to upload: </label>
-        <input type="file" name="fileToUpload" id="fileToUpload">
-             -->
-        
+        <input type="file" name="files[]" id="fileToUpload" multiple>        
+
         <label>&nbsp;</label>
         <input type="submit" value="Submit">
         <input type="button" value="Cancel" onClick="document.location.href='http://localhost/bouffage/';" />
     </form>
+    <!-- <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select Images to upload:
+        <input onchange="submit()" type="file" name="files[]" id="fileToUpload" multiple>
+        <input type="submit" value="UPLOAD" name="submit">
+    </form> -->
+
 </main>
 <?php include '../view/foot.php'; ?>

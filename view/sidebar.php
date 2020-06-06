@@ -21,6 +21,10 @@
                     <input type="hidden" name="whatdo" value= "my_account">
                     <button type="submit">My Account</button>
                 </form>
+                <form action="./sign in/index.php" method="POST">
+                    <input type="hidden" name="whatdo" value= "logout">
+                    <button type="submit">Logout</button>
+                </form>
             </li>
             <?php else: ?>
                 <li>

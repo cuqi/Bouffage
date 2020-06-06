@@ -142,4 +142,24 @@ function add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_ti
     }
 }
 
+
+function add_image($recipe_id, $image) {
+    global $db;
+    $query = "
+            UPDATE 
+    ";
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':image', $image);
+        $statement->execute();
+        $statement->closeCursor();
+
+        // Get the last recipe ID that was automatically generated
+        $recipe_id = $db->lastInsertId();
+        return $recipe_id;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
 ?>
