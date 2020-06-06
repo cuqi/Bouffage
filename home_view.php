@@ -3,72 +3,28 @@ include 'view/header.php';
 include 'view/sidebar.php';
 
 require_once('model/comment_db.php');
+require_once('./helpers/voting_html.php');
+require_once('./helpers/commenting_html.php');
 require_once('model/user_db.php');?>
 <main class="nofloat">
         <p>We offer free and tasty recipes for your cooking enjoyment. 
         From exotic foods to mouth watering desserts, 
         we are sure you`ll find something to test your culinary skills. Enjoy!
-        </p>
+                       </p>
         <br></br>
             <?php foreach ($recipes as $recipe) :
-                $recipeID = $recipe['recipe_id'];
-                $cuisine = $recipe['cuisine'];
-                $essay = $recipe['essay'];
-                $preparation = $recipe['preparation'];
-                $prep_time = $recipe['prep_time'];
-                $cook_time = $recipe['cook_time'];
-                $servings = $recipe['servings'];
-                $complexity = $recipe['complexity'];
-                $upvotes = $recipe['upvotes'];
-                $downvotes = $recipe['downvotes'];
-                $posting_date = $recipe['posting_date'];
-                $special_equipment = $recipe['special_equipment'];
-                $user_id = $recipe['user_id'];
-                $title = $recipe['title'];
 
-                $comp = "";
-                switch($complexity) {
-                    case 'Easy':
-                        $comp = "complex_easy";
-                        break;
-                    case 'Medium':
-                        $comp = "complex_medium";
-                        break;
-                    case 'Hard':
-                        $comp = "complex_hard";
-                        break;
-                    default:
-                        $comp = " ";
-                }
+                include('./recipe/fetch_recipe_info.php');
 
-                $aggregate = $upvotes - $downvotes;
-
-                $comments = get_comment_by_recipe($recipeID);
             ?>
 
         <div id = "separator"></div> 
         <br>
-
         <div>  
             <div>
-
-                <form class="inline" action="./user/index.php" method="POST">
-                <input type="hidden" name="listtheserecpes" value= "<?php echo $user_id?>">
-                <button class="username" type="submit"><?php echo get_username($user_id)['username'] ?></button>
-                </form>  
                 
-                <form class="inline" action="./recipe/voting.php" method="POST">
+                <?php echo voting_html($user_id, $recipeID, "recipe"); ?>
 
-                <label id = "arrow">
-                    <input type="radio" name="vote" id="upvote" value="u%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
-                    <img src="./images/uvote.png" alt="placeholder">
-                    </label>
-
-                    <label id = "arrow">
-                    <input type="radio" name="vote" id="downvote" value="d%%<?php echo $user_id?>%%<?php echo $recipeID?>" onclick="submit()">
-                    <img src="./images/dvote.png" alt="placeholder">
-                    </label>
-                </form>
             <br>
 
             <p class="title"> <?php echo $title; ?></p>
@@ -114,23 +70,8 @@ require_once('model/user_db.php');?>
                     ?>
 
                     <div id="textbox" class="comment">
-                    <form class="inline" action="./user/index.php" method="POST">
-                    <input type="hidden" name="listtheserecpes" value= "<?php echo $cuser?>">
-                    <button class="username" type="submit"><?php echo get_username($cuser)['username'] ?></button>
-                    </form>
 
-                    <form class="inline" action="./comment/voting.php" method="POST">
-                        <label id = "arrow">
-                        <input type="radio" name="vote" id="upvote" value="u%%<?php echo $user_id?>%%<?php echo $cid?>" onclick="submit()">
-                        <img src="./images/uvote.png" alt="placeholder">
-                        </label>
-
-                        <label id = "arrow">
-                        <input type="radio" name="vote" id="downvote" value="d%%<?php echo $user_id?>%%<?php echo $cid?>" onclick="submit()">
-                        <img src="./images/dvote.png" alt="placeholder">
-                        </label>
-                     </form>
-
+                    <?php echo voting_html($cuser, $cid, "comment"); ?>
 
                     <br>
                     usefull :<?php echo $cuseful; ?>       useless: <?php echo $cuseless; ?>
@@ -151,22 +92,8 @@ require_once('model/user_db.php');?>
                             $rcritique = $reply['critique'];
                             ?>
                             <div class="reply">
-                                <form class="inline" action="./user/index.php" method="POST">
-                                <input type="hidden" name="listtheserecpes" value= "<?php echo $ruser?>">
-                                <button class="username" type="submit"><?php echo get_username($ruser)['username'] ?></button>
-                            </form>
 
-                            <form class="inline" action="./comment/voting.php" method="POST">
-                                <label id = "arrow">
-                                <input type="radio" name="vote" id="upvote" value="u%%<?php echo $user_id?>%%<?php echo $rid?>" onclick="submit()">
-                                <img src="./images/uvote.png" alt="placeholder">
-                                </label>
-
-                                <label id = "arrow">
-                                <input type="radio" name="vote" id="downvote" value="d%%<?php echo $user_id?>%%<?php echo $rid?>" onclick="submit()">
-                                <img src="./images/dvote.png" alt="placeholder">
-                                </label>
-                            </form>
+                            <?php echo voting_html($ruser, $rid, "comment"); ?>
 
                             <br>
                             usefull :<?php echo $ruseful; ?>       useless: <?php echo $ruseless; ?>
@@ -179,49 +106,16 @@ require_once('model/user_db.php');?>
                             
                         <?php endforeach; ?>
 
-                            <!-- Code for a section to reply -->
-                            <form action="./comment/add_comment.php" method="POST">
-                                <input type="hidden" name="recipe_commented" value= "<?php echo $recipeID ?>" >
-                                <input class="comment" style="background-color: whitesmoke" type="text" name="commentcritique" placeholder="Leave a reply...">
-                                <input type="hidden" name="commentreplied" value="<?php echo $cid ?>">
-                                <div class="dropdown">
-                                    <select class="dropbtn" name="type" >
-                                        <div class="dropdown-content">
-                                        <option value="Comment">Comment</option>
-                                        <option value="Question">Question</option>
-                                        <option value="Tip">Tip</option>
-                                        </div>
-                                    </select>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="dropbtn">Go!</button>
-                                </div>
-                             </form>
+                        <!-- Code for a section to reply -->
+                        <?php echo commenting_html($recipeID, $cid, "reply" ); ?>
+                            </form>
 
 
                     </div>
                     <?php endforeach; ?>
 
-                            <!-- include 'add_comment.php' i ggwp -->
-            <form action="./comment/add_comment.php" method="POST">
-                <input type="hidden" name="recipe_commented" value= "<?php echo $recipeID ?>" >
-                <input class="comment" style="background-color: whitesmoke" type="text" name="commentcritique" placeholder="Leave a comment...">
-                <div class="dropdown">
-                    <select class="dropbtn" name="type" >
-                        <div class="dropdown-content">
-                        <option value="Comment">Comment</option>
-                        <option value="Question">Question</option>
-                        <option value="Tip">Tip</option>
-                        </div>
-                    </select>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Go!</button>
-                </div>
-            </form>
-            </div>
-            <div>
-                <?php $name = filter_input(INPUT_POST, 'name'); ?>   
+                            <!-- Code for a section to comment -->
+                            <?php echo commenting_html($recipeID, null, "comment"); ?>
             </div>
             <?php endforeach; ?>
 </main>
