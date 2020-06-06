@@ -15,5 +15,4 @@ foreach ($recipe_ids as $recipe_id) {
     $num += 1;
 }
 include('recipe_list.php');
-    
 ?>
