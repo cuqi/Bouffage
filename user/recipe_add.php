@@ -6,7 +6,7 @@ require_once('../model/recipe_db.php');
 require_once('../model/user_db.php');
 
 
-include 'upload.php';
+
 
 if (isset($_SESSION['user'])) {
     if (isset($_POST['title'])) {
@@ -25,6 +25,7 @@ if (isset($_SESSION['user'])) {
 
 
         add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_time, $servings, $complexity, $special_equipment, $user_id);
+        include 'upload.php';
         header("Location: http://localhost/bouffage/");
     }
 } else {

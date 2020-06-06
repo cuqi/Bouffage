@@ -1,7 +1,7 @@
 <?php 
-if(isset($_POST['submit'])){ 
     // Include the database configuration file 
-     
+    require_once('../model/recipe_db.php');
+    require_once('../model/recipe_image_db.php');
     // File upload configuration 
     $targetDir = "../images/"; 
     $allowTypes = array('jpg','png','jpeg','gif'); 
@@ -19,34 +19,20 @@ if(isset($_POST['submit'])){
             if(in_array($fileType, $allowTypes)){ 
                 // Upload file to server 
                 if(move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)){ 
-                    // Image db insert sql 
-                    $insertValuesSQL .= "('".$fileName."', NOW()),"; 
-                }else{ 
+                    // Image db insert sql
+                  $last_id = get_last_recipe_id()['MAX(recipe_id)'];
+                  $recipe_image_id = add_image($targetFilePath, $last_id);
+                }
+                else{ 
                     $errorUpload .= $_FILES['files']['name'][$key].' | '; 
                 } 
-            }else{ 
+            }
+            else{ 
                 $errorUploadType .= $_FILES['files']['name'][$key].' | '; 
-            } 
-        } 
-         
-        if(!empty($insertValuesSQL)){ 
-            $insertValuesSQL = trim($insertValuesSQL, ','); 
-            // Insert image file name into database 
-            $insert = $db->query("INSERT INTO recipe_image (image_name) VALUES $insertValuesSQL"); 
-            if($insert){ 
-                $errorUpload = !empty($errorUpload)?'Upload Error: '.trim($errorUpload, ' | '):''; 
-                $errorUploadType = !empty($errorUploadType)?'File Type Error: '.trim($errorUploadType, ' | '):''; 
-                $errorMsg = !empty($errorUpload)?'<br/>'.$errorUpload.'<br/>'.$errorUploadType:'<br/>'.$errorUploadType; 
-                $statusMsg = "Files are uploaded successfully.".$errorMsg; 
-            }else{ 
-                $statusMsg = "Sorry, there was an error uploading your file."; 
-            } 
-        } 
-    }else{ 
-        $statusMsg = 'Please select a file to upload.'; 
-    } 
+            }
+        }
+    }
      
     // Display status message 
     echo $statusMsg; 
-} 
 ?>

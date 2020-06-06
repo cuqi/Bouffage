@@ -48,6 +48,21 @@ function get_all_recipe_ids()
     return $result;
 }
 
+function get_last_recipe_id()
+{
+    global $db;
+    $query = '
+        SELECT MAX(recipe_id)
+        FROM recipe
+    ';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    return $result;
+}
+
+
 function get_all_recipes_from_user($userID)
 {
     global $db;
@@ -130,27 +145,6 @@ function add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_ti
         $statement->bindValue(':complexity', $complexity);
         $statement->bindValue(':special_equipment', $special_equipment);
         $statement->bindValue(':user_id', $user_id);
-        $statement->execute();
-        $statement->closeCursor();
-
-        // Get the last recipe ID that was automatically generated
-        $recipe_id = $db->lastInsertId();
-        return $recipe_id;
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
-        display_db_error($error_message);
-    }
-}
-
-
-function add_image($recipe_id, $image) {
-    global $db;
-    $query = "
-            UPDATE 
-    ";
-    try {
-        $statement = $db->prepare($query);
-        $statement->bindValue(':image', $image);
         $statement->execute();
         $statement->closeCursor();
 
