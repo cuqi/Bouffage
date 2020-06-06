@@ -3,7 +3,7 @@ html {
     background-color: coral;
 }
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, Verdana, sans-serif;
     width: 80%;
     margin: 0 auto;
     padding: 0 2em;
@@ -78,9 +78,7 @@ a:hover {
     float: left;
 } */
 textarea {
-    font-family: Arial, Helvetica, sans-serif;
     width: 25em;
-    margin-bottom: .5em;
 }
 br {
     clear: both;

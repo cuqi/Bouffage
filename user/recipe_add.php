@@ -36,11 +36,15 @@ if (isset($_SESSION['user'])) {
 <main class="nofloat">
     <h1>Add your own recipe:</h1>
     <form action="recipe_add.php" method="post" id="add_product_form" enctype="multipart/form-data">
-        <br>
+        <br></br>
 
-        <label>Title:</label>
-        <input type="text" name="title" placeholder="Enter the title of your recipe" required>
-        <br>
+        
+        <label id = "tab">Title:</label>
+            <input type="text" name="title" placeholder="Enter the title of your recipe" required>
+        
+        
+        
+        <br></br>
 
         <label>Cuisine:</label>
         <select name="cuisine">
@@ -52,29 +56,29 @@ if (isset($_SESSION['user'])) {
                 <option value="<?php echo $cuisine_type; ?>"><?php echo $cuisine_type; ?></option>
             <?php } ?>
         </select>
-        <br>
+        <br></br>
 
         <label>Description: </label>
-        <textarea placeholder="" name="essay" rows="10" cols="50">
+        <textarea name="essay" rows="10" cols="35">
         </textarea>
-        <br>
+        <br></br>
 
         <label>Preparation: </label>
         <textarea name="preparation" rows="10" cols="35">
         </textarea>
-        <br>
+        <br></br>
 
         <label>Preparation time: </label>
         <input type="text" name="prep_time" placeholder="Enter amount in minutes" required>
-        <br>
+        <br></br>
 
         <label>Cooking time: </label>
         <input type="text" name="cook_time" placeholder="Enter amount in minutes" required>
-        <br>
+        <br></br>
 
         <label>Servings: </label>
         <input type="text" name="servings" placeholder="Enter number of servings" required>
-        <br>
+        <br></br>
 
         <label>Complexity:</label>
         <select name="complexity">
@@ -86,12 +90,12 @@ if (isset($_SESSION['user'])) {
                 <option value="<?php echo $complexity_type; ?>"><?php echo $complexity_type; ?></option>
             <?php } ?>
         </select>
-        <br>
+        <br></br>
 
         <label>Special equipment: </label>
         <textarea name="special_equipment" rows="10" cols="35">
         </textarea>
-        <br>
+        <br></br>
 
         <input type="file" name="files[]" id="fileToUpload" multiple>        
 
