@@ -7,10 +7,10 @@ require_once('../model/user_db.php');
 require_once('../helpers/fields.php');
 require_once('../helpers/validate.php');
 
-if(isset($_SESSION['user'])){
+// if(isset($_SESSION['user'])){
 
-    echo $_SESSION['user'];
-}
+//     echo $_SESSION['user'];
+// }
 
 $action = $_POST['whatdo'];
 
@@ -33,7 +33,6 @@ switch ($action) {
         include('account_view.php');
     break;
     case 'logout':
-        echo 'yes';
         unset($_SESSION['user']);
         redirect('..');
     break;

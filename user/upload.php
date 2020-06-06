@@ -1,46 +1,38 @@
-<?php
-$target_dir = "../images";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
-  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-  if($check !== false) {
-    echo "File is an image - " . $check["mime"] . ".";
-    $uploadOk = 1;
-  } else {
-    echo "File is not an image.";
-    $uploadOk = 0;
-  }
-}
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-  }
-  
-  // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo "Sorry, your file is too large.";
-    $uploadOk = 0;
-  }
-  
-  // Allow certain file formats
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-  && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-    $uploadOk = 0;
-  }
-  
-  // Check if $uploadOk is set to 0 by an error
-  if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-  // if everything is ok, try to upload file
-  } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-      echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-      echo "Sorry, there was an error uploading your file.";
+<?php 
+    // Include the database configuration file 
+    require_once('../model/recipe_db.php');
+    require_once('../model/recipe_image_db.php');
+    // File upload configuration 
+    $targetDir = "../images/"; 
+    $allowTypes = array('jpg','png','jpeg','gif'); 
+     
+    $statusMsg = $errorMsg = $insertValuesSQL = $errorUpload = $errorUploadType = ''; 
+    $fileNames = array_filter($_FILES['files']['name']); 
+    if(!empty($fileNames)){ 
+        foreach($_FILES['files']['name'] as $key=>$val){ 
+            // File upload path 
+            $fileName = basename($_FILES['files']['name'][$key]); 
+            $targetFilePath = $targetDir . $fileName; 
+             
+            // Check whether file type is valid 
+            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION); 
+            if(in_array($fileType, $allowTypes)){ 
+                // Upload file to server 
+                if(move_uploaded_file($_FILES["files"]["tmp_name"][$key], $targetFilePath)){ 
+                    // Image db insert sql
+                  $last_id = get_last_recipe_id()['MAX(recipe_id)'];
+                  $recipe_image_id = add_image($targetFilePath, $last_id);
+                }
+                else{ 
+                    $errorUpload .= $_FILES['files']['name'][$key].' | '; 
+                } 
+            }
+            else{ 
+                $errorUploadType .= $_FILES['files']['name'][$key].' | '; 
+            }
+        }
     }
-  }
+     
+    // Display status message 
+    echo $statusMsg; 
+?>
