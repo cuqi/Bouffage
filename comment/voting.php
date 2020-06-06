@@ -20,7 +20,7 @@ $data = explode("%%", $data);
 $comment = $data[2];
 $user = $data[1];
 $userme = get_id_from_email($connected_user)['user_id'];
-$hashevoted = has_user_voted_comment($userme, $comment );
+$hashevoted = has_user_voted_comment($userme, $comment);
 if($hashevoted != NULL)
 {
     $hashevoted = $hashevoted['u_or_d'];
