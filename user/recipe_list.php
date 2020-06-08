@@ -1,4 +1,7 @@
-<?php include '../view/head.php'; ?>
+<?php include '../view/head.php'; 
+      require_once('../model/comment_db.php');  
+?>
+
 
 <main class="nofloat">
     <h1 class="top">Listing recipes</h1>
@@ -7,35 +10,7 @@
         <p>There are no recipes for this category.</p>
     <?php else : ?>
             <?php foreach ($recipes as $recipe) : 
-                $recipeID = $recipe['recipe_id'];
-                $cuisine = $recipe['cuisine'];
-                $essay = $recipe['essay'];
-                $preparation = $recipe['preparation'];
-                $prep_time = $recipe['prep_time'];
-                $cook_time = $recipe['cook_time'];
-                $servings = $recipe['servings'];
-                $complexity = $recipe['complexity'];
-                $upvotes = $recipe['upvotes'];
-                $downvotes = $recipe['downvotes'];
-                $posting_date = $recipe['posting_date'];
-                $special_equipment = $recipe['special_equipment'];
-                $user_id = $recipe['user_id'];
-
-                $comp = "";
-                switch($complexity) {
-                    case 'Easy':
-                        $comp = "complex_easy";
-                        break;
-                    case 'Medium':
-                        $comp = "complex_medium";
-                        break;
-                    case 'Hard':
-                        $comp = "complex_hard";
-                        break;
-                    default:
-                        $comp = " ";
-                }
-                $aggregate = $upvotes - $downvotes;
+                include '../recipe/fetch_recipe_info.php';
             ?>
             <div>
                 <img id="myimg" class="myimg" src="../images/<?php echo htmlspecialchars($recipeID); ?>.jpg" alt="&nbsp;">

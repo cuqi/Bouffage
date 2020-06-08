@@ -156,4 +156,19 @@ function add_recipe($title, $cuisine, $essay, $preparation, $prep_time, $cook_ti
         display_db_error($error_message);
     }
 }
+
+function delete_recipe($recipeID)
+{
+    global $db;
+    $query = '
+        DELETE FROM recipe 
+        WHERE recipe_id = :recipe
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':recipe', $recipeID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 ?>

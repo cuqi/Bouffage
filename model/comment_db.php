@@ -144,5 +144,19 @@ function add_reply($critique, $typeq, $commentinguser, $recipecommented, $commen
     }
 }
 
+function delete_comment($commentID)
+{
+    global $db;
+    $query = '
+        DELETE FROM comment 
+        WHERE comment_id = :comment
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':comment', $commentID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 
 ?>

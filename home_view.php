@@ -3,8 +3,7 @@ include 'view/header.php';
 include 'view/sidebar.php';
 
 require_once('model/comment_db.php');
-require_once('./helpers/voting_html.php');
-require_once('./helpers/commenting_html.php');
+require_once('./helpers/html_code.php');
 require_once('model/user_db.php');?>
 <main class="nofloat">
         <p>We offer free and tasty recipes for your cooking enjoyment. 
@@ -17,14 +16,17 @@ require_once('model/user_db.php');?>
                 include('./recipe/fetch_recipe_info.php');
 
             ?>
-
         <div id = "separator"></div> 
         <br>
         <div>  
             <div>
                 
-                <?php echo voting_html($user_id, $recipeID, "recipe"); ?>
+                <?php echo username_and_voting_html($user_id, $recipeID, "recipe"); ?>
 
+                <form action="delete.php" class="inline" method="POST">
+                    <input type="hidden" name="post_deleted" value="placeholder for the post id">
+                    <button id="delete-button">Delete</button>
+                </form>
             <br>
 
             <p class="title"> <?php echo $title; ?></p>
@@ -71,7 +73,7 @@ require_once('model/user_db.php');?>
 
                     <div id="textbox" class="comment">
 
-                    <?php echo voting_html($cuser, $cid, "comment"); ?>
+                    <?php echo username_and_voting_html($cuser, $cid, "comment"); ?>
 
                     <br>
                     usefull :<?php echo $cuseful; ?>       useless: <?php echo $cuseless; ?>
@@ -93,7 +95,7 @@ require_once('model/user_db.php');?>
                             ?>
                             <div class="reply">
 
-                            <?php echo voting_html($ruser, $rid, "comment"); ?>
+                            <?php echo username_and_voting_html($ruser, $rid, "comment"); ?>
 
                             <br>
                             usefull :<?php echo $ruseful; ?>       useless: <?php echo $ruseless; ?>
@@ -114,7 +116,7 @@ require_once('model/user_db.php');?>
                     </div>
                     <?php endforeach; ?>
 
-                            <!-- Code for a section to comment -->
+                            <!-- Code for section to comment -->
                             <?php echo commenting_html($recipeID, null, "comment"); ?>
             </div>
             <?php endforeach; ?>
