@@ -36,7 +36,7 @@
                 </li>
             <?php endif; ?>
         <li>
-            <a href="<?php echo $app_path; ?>">Home</a>
+            <a href="<?php header("localhost/bouffage") ?>">Home</a>
         </li>
 </ul>
 
