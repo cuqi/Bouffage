@@ -306,6 +306,22 @@ td, th {
     font-size: 0mm;
 }
 
+#delete-button { 
+    color: white;
+    background-color: red;
+    border-radius: 3px;
+    border-width: 2px;
+    border-color: tomato;
+    float: right;
+    margin-right: 10px;
+}
+
+#delete-button:hover
+{
+    background-color: rgb(220, 0, 0);
+}
+
+
 /* hide radio */
 [type = radio]
 {

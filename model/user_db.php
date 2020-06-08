@@ -159,4 +159,19 @@ function add_user_to_db($email, $password, $username) {
     $statement->closeCursor();
     return $customer_id;
 }
+
+function delete_user($userID)
+{
+    global $db;
+    $query = '
+        DELETE FROM user 
+        WHERE user_id = :user
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user', $userID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 ?>
