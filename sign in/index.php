@@ -3,19 +3,11 @@
 require_once('../utils/main.php');
 require_once('../model/recipe_db.php');
 require_once('../model/user_db.php');
-// require_once('../utils/secure_conn.php');
 require_once('../helpers/fields.php');
 require_once('../helpers/validate.php');
 
-// if(isset($_SESSION['user'])){
-
-//     echo $_SESSION['user'];
-// }
-
 $action = $_POST['whatdo'];
 
-// if ($action == NULL){
-//     $action = $_GET['whatdo'];
     if ($action == NULL) {
         $action = 'login';
         if (isset($_SESSION['user'])) {
@@ -27,13 +19,14 @@ $action = $_POST['whatdo'];
 
 switch ($action) {
     case 'login':
+        //header("Location: https://youtu.be/dQw4w9WgXcQ");
         include('login.php');
     break;
     case 'my_account':
         include('account_view.php');
     break;
     case 'logout':
-        unset($_SESSION['user']);
+        session_destroy();
         redirect('..');
     break;
     default:

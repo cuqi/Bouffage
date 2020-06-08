@@ -20,7 +20,7 @@ follow($userme, $user_id);
 increase_followers($user_id);
 increase_following($userme);
 
-$previous = "javascrip:history.back()";
+$previous = "javascript:history.back()";
 header("Location: $previous");
 
 ?>

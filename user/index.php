@@ -6,6 +6,12 @@ require_once('../model/following_db.php');
 require_once('../utils/main.php');
 
 $user_id = $_GET['open_this_user'];
+$existence = does_user_exist($user_id);
+
+if($user_id == -1 || $existence == false)
+{
+    header("Location: ../errors/error.php");
+}
 $recipe_ids = array();
 $recipe_ids = get_all_recipes_from_user($user_id);
 $recipes = array();

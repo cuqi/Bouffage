@@ -160,6 +160,22 @@ function add_user_to_db($email, $password, $username) {
     return $customer_id;
 }
 
+function get_role($entered_email) {
+    global $db;
+    $query = '
+        SELECT `role`
+        FROM `user`
+        WHERE `email` = :entered_email
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':entered_email', $entered_email);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    return $result;
+}
+
 function delete_user($userID)
 {
     global $db;
@@ -172,6 +188,22 @@ function delete_user($userID)
     $statement->bindValue(':user', $userID);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function does_user_exist($searchedID) {
+    global $db;
+    $query = '
+        SELECT *
+        FROM user
+        WHERE user_id = :searchedID
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':searchedID', $searchedID);
+    $statement->execute();
+    $valid = ($statement->rowCount() == 1);
+    $statement->closeCursor();
+    return $valid;
 }
 
 ?>

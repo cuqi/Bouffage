@@ -22,11 +22,9 @@ require_once('model/user_db.php');?>
             <div>
                 
                 <?php echo username_and_voting_html($user_id, $recipeID, "recipe"); ?>
+                
+                <?php echo delete_this("Recipe", $recipeID); ?>
 
-                <form action="delete.php" class="inline" method="POST">
-                    <input type="hidden" name="post_deleted" value="placeholder for the post id">
-                    <button id="delete-button">Delete</button>
-                </form>
             <br>
 
             <p class="title"> <?php echo $title; ?></p>
@@ -74,6 +72,7 @@ require_once('model/user_db.php');?>
                     <div id="textbox" class="comment">
 
                     <?php echo username_and_voting_html($cuser, $cid, "comment"); ?>
+                    <?php echo delete_this("Comment", $cid); ?>
 
                     <br>
                     usefull :<?php echo $cuseful; ?>       useless: <?php echo $cuseless; ?>
@@ -96,6 +95,7 @@ require_once('model/user_db.php');?>
                             <div class="reply">
 
                             <?php echo username_and_voting_html($ruser, $rid, "comment"); ?>
+                            <?php echo delete_this("Comment", $rid); ?>
 
                             <br>
                             usefull :<?php echo $ruseful; ?>       useless: <?php echo $ruseless; ?>

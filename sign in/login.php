@@ -13,7 +13,8 @@ if (isset($_POST['email'])) {
 
   if ($success) {
     $_SESSION['user'] = $useremail;
-    header("Location: http://localhost/bouffage");
+    $_SESSION['role'] = get_role($useremail)['role'];
+    header("Location: http://localhost/bouffage");   // this part right here
     exit();
   } else {
         $wrong_password = is_valid_email($useremail);

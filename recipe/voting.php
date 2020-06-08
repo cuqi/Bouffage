@@ -78,7 +78,7 @@ else
     }
 }
 
-$previous = "javascrip:history.back()";
+$previous = "javascript:history.back()";        //voa ne rabote
 header("Location: $previous");
 
 ?>
