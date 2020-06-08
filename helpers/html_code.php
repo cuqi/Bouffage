@@ -41,7 +41,15 @@ return $html;
 
 function username_and_voting_html($user_id, $id, $path)
 {
-    $username = get_username($user_id)['username'];
+    if(get_username($user_id) == null)
+    {
+        $username = "[deleted]";
+        $user_id = -1;
+    }
+    else
+    {
+        $username = get_username($user_id)['username'];
+    }
 
     $html =  <<<EOT
     <form class="inline" action="./user/index.php" method="GET">
@@ -66,5 +74,19 @@ EOT;
 return $html;
 }
 
+function delete_this($typeOfPost, $postID)
+{
+    if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin")
+    {
+        $html =  <<<EOT
+        <form action="./helpers/delete.php" class="inline" method="POST">
+            <input type="hidden" name="post_deleted" value="$typeOfPost%%$postID">
+            <button type="submit" id="delete-button" onclick="return confirm('Are you sure you want to delete this post? ')">Delete</button>
+        </form>
+    EOT;
+    return $html;
+    }
+
+}
     
 ?>
