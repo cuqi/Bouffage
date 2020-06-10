@@ -9,59 +9,90 @@ body {
     padding: 0 2em;
     background-color: whitesmoke;     /* navajowhite */
     border: 0px solid black;
+    z-index: 0;
 }
-header {
-    border-bottom: 2px solid black;
-    padding: .5em 0;
-}
-header h1 {
-    color: black;
-}
+
+/* Style the header */
+.header {
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    z-index: 10;
+  }
+  
+  /* Page content */
+  .content {
+    padding: 16px;
+  }
+  
+  /* The sticky class is added to the header with JS when it reaches its scroll position */
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 80%;
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
 main {
     margin-bottom: 1em;
     float: left;
     width: auto;
 }
+
 aside {
     float: left;
     width: 150px;
     height: 400px;
     margin: .5em 0;
 }
+
 section {
     float: left;
     width: 500px;
 }
+
 footer {
     clear: both;
     border-top: 2px solid black;
 }
+
 footer p {
     text-align: right;
     font-size: 80%;
 }
+
 h1 {
     font-size: 150%;
     margin: .5em 0 .25em;
 }
+
 h2 {
     font-size: 120%;
     margin: .5em 0;
 }
+
 h1, h2 {
     color: rgb(208, 133, 4);
 }
+
 p {
     margin: 1em 0;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
     padding-left: 0;
 }
+
 li {
     padding-bottom: .5em;
 }
+
 a {
     color: rgb(41, 64, 124);
     font-weight: bold;
@@ -104,27 +135,6 @@ td, th {
     color: rebeccapurple;
 }
 
-/* the styles for the div tags that divide the page into sections */
-#left_column {
-    float: left;
-    width: 150px;
-}
-#right_column {
-    float: left;
-    padding-left: 1em;
-    padding-bottom: .5em;
-    width: 330px;
-}
-#left_column p img {
-    text-align: center;
-}
-#right_column ul {
-    list-style-type: disc;
-    padding-left: 2em;
-    margin-top: .25em;
-}
-
-
 /* styles for the classes */
 .right {
     text-align: right;
@@ -151,111 +161,6 @@ td, th {
 
 .error {
     color: red;
-}
-
-/* styles for the ids */
-#category_table form {
-    margin: 0;
-}
-#category_table td {
-    margin: 0;
-    padding: .15em .5em 0 0;
-}
-#add_category_form {
-    margin: 0;
-}
-#add_category_form input {
-    margin-right: .5em;  
-}
-
-#add_admin_user_form label {
-    width: 8.5em;
-}
-
-#edit_and_delete_buttons {
-    margin-bottom: .5em;
-}
-#edit_and_delete_buttons form {
-    display: inline;
-}
-
-#image_manager input {
-    margin: .25em;
-}
-.product_image_column {
-    height: 10px;
-    width: 10px;
-    text-align: center;
-    opacity: 0.5;
-    border-radius: 50%;
-}
-
-#add_to_cart_form {
-    margin: .25em;
-}
-#add_to_cart_form input {
-    float: none;
-}
-
-#cart {
-    margin: 0;
-    padding: 1em .25em;
-    border-collapse: collapse;
-    width: 100%;
-}
-#cart_header th {
-    border-bottom: 2px solid black;
-}
-#cart_footer td {
-    border-top: 2px solid black;
-    font-weight: bold;
-}
-
-#login_form {
-    margin-top: .5em;
-}
-#login_form label {
-    text-align: left;
-    width: 5em;
-    padding-right: 1em;
-}
-#login_form input[text] {
-    background-color: red;
-}
-
-#register_form label {
-    width: 10em;
-}
-
-#edit_account_form label {
-    width: 9em;
-}
-#payment_form label {
-    width: 8em;
-    padding-right: 1em;
-}
-#payment_form input[text] {
-    width: 5em;
-    margin: 0;
-    padding-right: 1em;
-}
-
-#add_category label {
-    text-align: left;
-    width: 3em;
-}
-#add_category input { 
-    margin-right: .25em;
-}
-
-#formatting_directions h2 {
-    padding-top: 1em;
-}
-#formatting_directions ul {    
-    list-style-type: disc;
-    margin-top: 0;
-    padding-left: 1em;
-    padding-bottom: 1em;
 }
 
 #copyright {
@@ -409,7 +314,7 @@ td, th {
 .topnav {
     overflow: hidden;
     background-color: whitesmoke;
-    width: 80%;
+    z-index: 10;
   }
   
   /* Style the links inside the navigation bar */
@@ -421,19 +326,7 @@ td, th {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-  }
 
-  .topnav a.link {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    margin-top: 30px;
-    margin-inline-start: 30px;
-    z-index: 2;
   }
   
   /* Change the color of links on hover */
@@ -444,9 +337,10 @@ td, th {
   
   /* Style the "active" element to highlight the current page */
   .topnav a.active {
-      margin-top: 10px;
-    background-color: whitesmoke;
-    color: black;
+    color: teal;
+    margin-top: 40px;
+    margin-inline-start: 10px;
+    font-family: 'Lucida Sans';
   }
   
   /* Style the search box inside the navigation bar */
@@ -474,28 +368,36 @@ td, th {
     }
   }
 
-
-  .sticky {
+  .sticky2 {
     position: fixed;
     top: 0;
-    width: 100%
-  }
-  
-  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-  .sticky + .body {
-    padding-top: 102px;
+    width: 80%;
   }
 
-  .top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 60px;
-  }
-  
-  .top {
-    height: 250px; /* Space in here for search */
-    padding-top: 40px;
-    position: relative;
-  }
+.buttons {
+    width: 80%;
+    height: 50px;
+    margin: auto;
+    padding: 10px;
+}
+.myButton1 {
+    margin-top: 60px;
+    width: 10%;
+    height: 25px;
+    float: right;
+    margin-inline-start: inherit;
+    margin-left: 5px;
+}
+
+.myButton2 {
+    margin-top: 60px;
+    margin-left: 5px;
+    width: 10%;
+    height: 25px;
+    margin-inline-start: inherit;
+}
+
+.searchbar {
+    margin-inline-start: inherit;
+    float: left;
+}

@@ -1,4 +1,5 @@
 <ul>
+    <br>
     <li>
         <a href="http://localhost/bouffage/user/recipe_add.php"> Add Recipes </a>
     </li>
@@ -11,7 +12,6 @@
             $logout_url = $account_url . '?sign%20in=logout';
 
             $toindex = $app_path . 'sign in';
-            echo $login_url;
             
             
             if (isset($_SESSION['user'])) :
