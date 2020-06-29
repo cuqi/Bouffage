@@ -20,6 +20,8 @@
     }
 
     echo delete_this("User", $user_id);
+
+    echo make_admin($user_id);
 ?>
 
 <img src="//" alt="profile picture for user" style="border-radius: 50%;" style="display: inline-block;">

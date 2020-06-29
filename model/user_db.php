@@ -176,6 +176,22 @@ function get_role($entered_email) {
     return $result;
 }
 
+function get_role_from_id($entered_id) {
+    global $db;
+    $query = '
+        SELECT `role`
+        FROM `user`
+        WHERE `user_id` = :entered_id
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':entered_id', $entered_id);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    return $result;
+}
+
 function delete_user($userID)
 {
     global $db;

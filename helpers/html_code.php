@@ -76,12 +76,57 @@ return $html;
 
 function delete_this($typeOfPost, $postID)
 {
-    if (isset($_SESSION['role']) && $_SESSION['role'] == "Admin")
+    $is_this_my_post = false;
+
+    if(isset($_SESSION['user']))
+    {
+        $userme = get_id_from_email($_SESSION['user'])['user_id'];
+        if($typeOfPost == "Recipe")
+        {
+            $recipe = get_recipe($postID);
+            $posting_user = $recipe['user_id'];
+            if($posting_user == $userme)
+            {
+                $is_this_my_post = true;
+            }
+        }
+        
+        if($typeOfPost == "Comment")
+        {
+            $comment = get_comment($postID);
+            $posting_user = $comment['user_commented_id'];
+            if($posting_user == $userme)
+            {
+                $is_this_my_post = true;
+            }
+        }
+    }
+
+    
+
+    if ((isset($_SESSION['role']) && $_SESSION['role'] == "Admin") || ($is_this_my_post))
     {
         $html =  <<<EOT
         <form action="./helpers/delete.php" class="inline" method="POST">
             <input type="hidden" name="post_deleted" value="$typeOfPost%%$postID">
-            <button type="submit" id="delete-button" onclick="return confirm('Are you sure you want to delete this post? ')">Delete</button>
+            <button type="submit" id="delete-button" style="margin-top: 5px;" onclick="return confirm('Are you sure you want to delete this post? ')">Delete</button>
+        </form>
+    EOT;
+    return $html;
+    }
+
+}
+
+function make_admin($userID)
+{
+    $userrole = get_role_from_id($userID)['role'];
+
+    if ((isset($_SESSION['role']) && $_SESSION['role'] == "Admin") && ($userrole != "Admin"))
+    {
+        $html =  <<<EOT
+        <form action="./helpers/make_admin.php" class="inline" method="POST">
+            <input type="hidden" name="user_admin" value="$userID">
+            <button type="submit" id="admin-button" style="margin-top: 5px;" onclick="return confirm('Are you sure you want to make this user an admin? ')">Make admin</button>
         </form>
     EOT;
     return $html;
