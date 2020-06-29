@@ -1,11 +1,11 @@
-<?php include '../view/head.php'; 
+<?php  
       require_once('../model/comment_db.php');  
 ?>
 
 
 <main class="nofloat">
-    <h1 class="top">Listing recipes</h1>
-    <p>To add your recipe, click</p>
+<div id = "separator"></div>
+<br>
     <?php if (count($recipes) == 0) : ?>
         <p>There are no recipes for this category.</p>
     <?php else : ?>

@@ -9,6 +9,57 @@
 </head>
 
 <body>
+    
+    <!-- The Modal -->
+    <div id="id01" class="modal" style="display: none">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+    <!-- Modal Content -->
+    <form id="form" class="modal-content animate" action="/bouffage/sign in/login.php" method="POST">
+        <div class="imgcontainer" style="margin-bottom: 0px;">
+        <img src="../Bouffage/sign in/avatar.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter email" name="email" required>
+        <br>
+
+        <?php
+            if(isset($wrong_password))
+            {
+            echo "<p> Wrong password </p>";
+            }
+        ?>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button id="button" type="submit">Login</button>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    </form>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+        }
+    </script>
+  </div>
+
 
     <div class="topnav" id="myNav">
         <a href="javascript:window.location.reload(true)">
@@ -44,12 +95,31 @@
             </form>
         <?php else : ?>
 
-            <form action="./sign in/index.php" method="POST">
+            <!-- <form action="./sign in/index.php" method="POST">
                 <input type="hidden" name="whatdo" value="login">
                 <button class="myButton1" type="submit">Login</button>
-            </form>
+            </form> -->
+            <button class="myButton1" type="submit" onclick="ShowLogin()">Login</button>
+            <script>
+                // Get the modal
+                function ShowLogin()
+                {
+                    var modal = document.getElementById('id01');
+                    modal.style.display = "block";
+                }
+            </script>
 
         <?php endif; ?>
-
+        <?php 
+        if(isset($_SESSION['login']))
+        {
+            ?>
+            <script>
+                 ShowLogin();
+        </script>
+            <?php
+            unset($_SESSION['login']);
+        }
+    ?>
         
     </div>
