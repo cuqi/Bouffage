@@ -48,6 +48,9 @@
                 <input type="hidden" name="whatdo" value="login">
                 <button class="myButton1" type="submit">Login</button>
             </form>
+            <form action="./sign in/signup.php" method="POST">
+                <button class="myButton2" type="submit">Sign Up</button>
+            </form>
 
         <?php endif; ?>
 

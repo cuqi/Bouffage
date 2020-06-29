@@ -144,16 +144,17 @@ function is_valid_email($entered_email) {
     return $valid;
 }
 
-function add_user_to_db($email, $password, $username) {
+function add_user_to_db($email, $password, $username, $profile_picture) {
     global $db;
     $password = sha1($email . $password);
     $query = '
-        INSERT INTO user (email, password, username)
-        VALUES (:email, :password, :username)';
+        INSERT INTO user (email, password, username, profile_picture)
+        VALUES (:email, :password, :username, :profile_picture)';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->bindValue(':password', $password);
     $statement->bindValue(':username', $username);
+    $statement->bindValue(':profile_picture', $profile_picture);
     $statement->execute();
     $customer_id = $db->lastInsertId();
     $statement->closeCursor();
@@ -174,4 +175,18 @@ function delete_user($userID)
     $statement->closeCursor();
 }
 
+function change_picture($profile_picture, $user_id)
+{
+    global $db;
+    $query = "
+            UPDATE user 
+            SET profile_picture= :profile_picture
+            WHERE user_id = :user_id
+    ";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->bindValue(':profile_picture', $profile_picture);
+    $statement->execute();
+    $statement->closeCursor();
+}
 ?>

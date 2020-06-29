@@ -4,7 +4,7 @@
 <div id="signup" class="modal">
   <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>
   <!-- Modal Content -->
-  <form class="modal-content animate" id = "container" action="/bouffage/sign%20in  /create_user.php" method="POST">
+  <form class="modal-content animate" id = "container" action="/bouffage/sign%20in  /create_user.php" method="POST" enctype="multipart/form-data">
     <section class= "row">
       <div class="column">
         <div class="container left">
@@ -18,10 +18,12 @@
           <input type="password" placeholder="Enter Password" name="password1" required>
           <label for="password2"><b>Confirm Password</b></label>
           <input type="password" placeholder="Confirm Password" name="password2" required>
+          <!-- <input type="submit" value="Upload Image" name="submit"> -->
         </div>
         <div class="column">
           <div class="container left">
-            <h1>i am verry sorry to hear that you are not a part of this website</h1>
+            <label for="profile_picture"><b>Upload avatar: </b></label>
+            <input type="file" name="profile_picture" id="profile_picture">
             <h2>Please create an account</h2>
             <button type="submit">Sign up</button>
           </div>

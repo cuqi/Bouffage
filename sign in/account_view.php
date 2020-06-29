@@ -9,7 +9,6 @@
     $my_verified = $my_acc['verified_email'];
 ?>
     <h1>My Account</h1>
-    
     <p><b>Username: </b><?php echo $my_username; ?></p>
     <p><b>Karma points: </b><?php echo $my_karma; ?></p>
     <p><b>Email: </b>

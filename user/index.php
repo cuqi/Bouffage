@@ -5,7 +5,12 @@ require_once('../model/user_db.php');
 require_once('../model/following_db.php');
 require_once('../utils/main.php');
 
-$user_id = $_GET['open_this_user'];
+if(isset($_GET['open_this_user'])){
+    $user_id = $_GET['open_this_user'];
+}
+else {
+    $user_id = get_id_from_email($_SESSION['user'])['user_id'];
+}
 $recipe_ids = array();
 $recipe_ids = get_all_recipes_from_user($user_id);
 $recipes = array();
