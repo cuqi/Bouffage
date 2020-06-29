@@ -1,22 +1,21 @@
 <?php 
 include 'view/header.php'; 
-include 'view/sidebar.php';
+//include 'view/sidebar.php';
 
 require_once('model/comment_db.php');
 require_once('./helpers/html_code.php');
 require_once('model/user_db.php');?>
 <main class="nofloat">
-        <p>We offer free and tasty recipes for your cooking enjoyment. 
+        <!-- <p>We offer free and tasty recipes for your cooking enjoyment. 
         From exotic foods to mouth watering desserts, 
         we are sure you`ll find something to test your culinary skills. Enjoy!
-                       </p>
-        <br></br>
+                       </p> -->
             <?php foreach ($recipes as $recipe) :
 
                 include('./recipe/fetch_recipe_info.php');
 
             ?>
-        <div id = "separator"></div> 
+        
         <br>
         <div>  
             <div>
@@ -119,6 +118,7 @@ require_once('model/user_db.php');?>
                             <!-- Code for section to comment -->
                             <?php echo commenting_html($recipeID, null, "comment"); ?>
             </div>
+            <div id = "separator"></div> 
             <?php endforeach; ?>
 </main>
 <?php include 'view/footer.php'; ?>

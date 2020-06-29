@@ -57,7 +57,6 @@ section {
 
 footer {
     clear: both;
-    border-top: 2px solid black;
 }
 
 footer p {
@@ -315,6 +314,9 @@ td, th {
     overflow: hidden;
     background-color: whitesmoke;
     z-index: 10;
+    margin: inherit;
+    margin-bottom: 2px;
+    border-bottom: 3px solid teal;
   }
   
   /* Style the links inside the navigation bar */
@@ -323,7 +325,6 @@ td, th {
     display: block;
     color: black;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
 
@@ -348,9 +349,11 @@ td, th {
     float: right;
     padding: 6px;
     border: none;
-    margin-top: 8px;
+    margin-top: 27px;
     margin-right: 16px;
     font-size: 17px;
+    float: right;
+    background-color: whitesmoke;
   }
   
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
@@ -381,23 +384,38 @@ td, th {
     padding: 10px;
 }
 .myButton1 {
-    margin-top: 60px;
-    width: 10%;
-    height: 25px;
+    background-color: teal;
+    border-style: groove;
+    border: none;
+    margin-top: 27px;
+    width: 8%;
+    height: 27px;
     float: right;
-    margin-inline-start: inherit;
-    margin-left: 5px;
+    margin-right: 150px;
+    margin-left: 3px;
 }
 
 .myButton2 {
-    margin-top: 60px;
-    margin-left: 5px;
-    width: 10%;
-    height: 25px;
-    margin-inline-start: inherit;
+    background-color: teal;
+    border: none;
+    margin-top: 27px;
+    width: 8%;
+    height: 27px;
+    float: right;
+    margin-right: 20px;
+    margin-left: 3px;
 }
 
 .searchbar {
-    margin-inline-start: inherit;
-    float: left;
+    margin-top: 27px;
+    float: none;
+}
+
+.submit {
+    float: right;
+    margin-top: 25px;
+    margin-right: 2px;
+    background: teal url(http://www.famfamfam.com/lab/icons/silk/icons/zoom.png) 10px 10px no-repeat;
+    border: 1px solid #d9d9d9;
+    padding: 10px 10px 10px 30px;
 }

@@ -18,7 +18,7 @@
 
         <form action="./" method="POST">
             <input class="searchbar" name="search" type="text" placeholder="Search...">
-            <input class="submit" type="submit" value="search">
+            <!-- <input class="submit" type="submit" value=""> -->
         </form>
 
         <?php
@@ -40,7 +40,7 @@
             </form>
             <form action="./sign in/index.php" method="POST">
                 <input type="hidden" name="whatdo" value="logout">
-                <button class="myButton1" type="submit">Logout</button>
+                <button class="myButton2" type="submit">Logout</button>
             </form>
         <?php else : ?>
 
