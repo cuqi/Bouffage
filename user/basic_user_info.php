@@ -24,7 +24,7 @@
     echo make_admin($user_id);
 ?>
 
-<img src="//" alt="profile picture for user" style="border-radius: 50%;" style="display: inline-block;">
+<img src="//" alt="profile picture for user" style="border-radius: 50%; display: inline-block;">
 <h1 ><?php echo $username ?></h1>
 <h3>karma: <?php echo $karma ?>  following: <?php echo $following; ?> followers: <?php echo $followers ?> </h3>
 <h6>date created: <?php echo $date_joined ?></h6>

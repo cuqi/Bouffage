@@ -22,7 +22,8 @@ foreach ($recipe_ids as $recipe_id) {
     $recipes[] = $recipe;
     $num += 1;
 }
-
+include('../view/head.php');
+echo "<br>";
 include('basic_user_info.php');
 include('recipe_list.php');
 ?>
