@@ -43,6 +43,7 @@ function display_db_error($error_message) {
 
 function display_error($error_message) {
     global $app_path;
+    $_SESSION['errormsg'] = $error_message;
     include '../errors/error.php';
     exit;
 }

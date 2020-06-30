@@ -6,10 +6,7 @@ require_once('model/comment_db.php');
 require_once('./helpers/html_code.php');
 require_once('model/user_db.php');?>
 <main class="nofloat">
-        <!-- <p>We offer free and tasty recipes for your cooking enjoyment. 
-        From exotic foods to mouth watering desserts, 
-        we are sure you`ll find something to test your culinary skills. Enjoy!
-                       </p> -->
+        
             <?php foreach ($recipes as $recipe) :
 
                 include('./recipe/fetch_recipe_info.php');

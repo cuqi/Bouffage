@@ -4,7 +4,7 @@
 
 <head>
     <title>Bouffage</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>../main2.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $app_path ?>../main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.ico" />
 </head>
 
@@ -61,7 +61,7 @@
 
 
     <div class="topnav" id="myNav">
-        <a href="javascript:window.location.reload(true)">
+        <a href="http://localhost/bouffage/">
             <img src="../images/bouffage.png" style="max-height: 60px;">
         </a>
         <a class="active" href="http://localhost/bouffage/user/recipe_add.php"> Add Recipes </a>
@@ -93,12 +93,10 @@
                 <button class="myButton2" type="submit">Logout</button>
             </form>
         <?php else : ?>
-
-            <!-- <form action="./sign in/index.php" method="POST">
-                <input type="hidden" name="whatdo" value="login">
-                <button class="myButton1" type="submit">Login</button>
-            </form> -->
             <button class="myButton1" type="submit" onclick="ShowLogin()">Login</button>
+            <form action="../sign in/signup.php" method="POST">
+                <button class="myButton2" type="submit">Sign Up</button>
+            </form>
             <script>
                 // Get the modal
                 function ShowLogin()
@@ -120,5 +118,4 @@
             unset($_SESSION['login']);
         }
     ?>
-        
     </div>

@@ -120,18 +120,47 @@ function delete_this($typeOfPost, $postID)
 function make_admin($userID)
 {
     $userrole = get_role_from_id($userID)['role'];
+    $html = "";
 
     if ((isset($_SESSION['role']) && $_SESSION['role'] == "Admin") && ($userrole != "Admin"))
     {
         $html =  <<<EOT
-        <form action="./helpers/make_admin.php" class="inline" method="POST">
+        <form action="../helpers/make_user_admin.php" class="inline" method="POST">
             <input type="hidden" name="user_admin" value="$userID">
             <button type="submit" id="admin-button" style="margin-top: 5px;" onclick="return confirm('Are you sure you want to make this user an admin? ')">Make admin</button>
         </form>
     EOT;
-    return $html;
     }
+    else if ((isset($_SESSION['role']) && $_SESSION['role'] == "Admin") && ($userrole == "Admin"))
+    {
+        $html =  <<<EOT
+        <form action="../helpers/make_user_user.php" class="inline" method="POST">
+            <input type="hidden" name="user_user" value="$userID">
+            <button type="submit" id="delete-button" style="margin-top: 5px;" onclick="return confirm('Are you sure you want to remove this users status as admin? ')">Remove admin status</button>
+        </form>
+    EOT;
+    }
+    return $html;
 
 }
     
+function change_image($userID, $picture)
+{
+    $user_id = get_id_from_email($_SESSION['user'])['user_id'];
+    $html = "";
+
+    if ($user_id == $userID)
+    {
+        $html =  <<<EOT
+        <form action="change_picture.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="remove" value="$picture">
+            <label for="profile_picture"><b>Change picture: </b></label>            
+            <input type="file" name="profile_picture" id="profile_picture">
+            <input type="submit" value="Update picture" name="submist">
+        </form>
+    EOT;
+    }
+    return $html;
+}
+
 ?>

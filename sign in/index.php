@@ -23,7 +23,7 @@ switch ($action) {
         include('login.php');
     break;
     case 'my_account':
-        include('account_view.php');
+        header("Location: http://localhost/bouffage/user/index.php");
     break;
     case 'logout':
         session_destroy();

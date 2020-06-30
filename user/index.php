@@ -5,7 +5,15 @@ require_once('../model/user_db.php');
 require_once('../model/following_db.php');
 require_once('../utils/main.php');
 
-$user_id = $_GET['open_this_user'];
+
+if(!isset($_GET['open_this_user']))
+{
+    $user_id = get_id_from_email($_SESSION['user'])['user_id'];
+}
+else
+{
+    $user_id = $_GET['open_this_user'];
+}
 $existence = does_user_exist($user_id);
 
 if($user_id == -1 || $existence == false)

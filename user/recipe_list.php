@@ -29,7 +29,6 @@
                     <p id = "small-text"> Posted on: <?php echo $posting_date; ?></p>
                 </div>
             </div>
-            <div id = "separator"></div>
             <?php endforeach; ?>
     <?php endif; ?>
 </main>

@@ -1,11 +1,9 @@
-<?php include '../view/head.php'; ?>
-
 <?php
 require_once('../utils/main.php');
 require_once('../model/recipe_db.php');
 require_once('../model/user_db.php');
 
-
+include '../view/head.php';
 
 
 if (isset($_SESSION['user'])) {
