@@ -9,59 +9,90 @@ body {
     padding: 0 2em;
     background-color: whitesmoke;     /* navajowhite */
     border: 0px solid black;
+    z-index: 0;
 }
-header {
-    border-bottom: 2px solid black;
-    padding: .5em 0;
-}
-header h1 {
-    color: black;
-}
+
+/* Style the header */
+.header {
+    padding: 10px 16px;
+    background: #555;
+    color: #f1f1f1;
+    z-index: 10;
+  }
+  
+  /* Page content */
+  .content {
+    padding: 16px;
+  }
+  
+  /* The sticky class is added to the header with JS when it reaches its scroll position */
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 80%;
+  }
+  
+  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+  .sticky + .content {
+    padding-top: 102px;
+  }
+
 main {
     margin-bottom: 1em;
     float: left;
     width: auto;
 }
+
 aside {
     float: left;
     width: 150px;
     height: 400px;
     margin: .5em 0;
 }
+
 section {
     float: left;
     width: 500px;
 }
+
 footer {
     clear: both;
     border-top: 2px solid black;
 }
+
 footer p {
     text-align: right;
     font-size: 80%;
 }
+
 h1 {
     font-size: 150%;
     margin: .5em 0 .25em;
 }
+
 h2 {
     font-size: 120%;
     margin: .5em 0;
 }
+
 h1, h2 {
     color: rgb(208, 133, 4);
 }
+
 p {
     margin: 1em 0;
 }
+
 ul {
     list-style-type: none;
     margin: 0;
     padding-left: 0;
 }
+
 li {
     padding-bottom: .5em;
 }
+
 a {
     color: rgb(41, 64, 124);
     font-weight: bold;
@@ -104,27 +135,6 @@ td, th {
     color: rebeccapurple;
 }
 
-/* the styles for the div tags that divide the page into sections */
-#left_column {
-    float: left;
-    width: 150px;
-}
-#right_column {
-    float: left;
-    padding-left: 1em;
-    padding-bottom: .5em;
-    width: 330px;
-}
-#left_column p img {
-    text-align: center;
-}
-#right_column ul {
-    list-style-type: disc;
-    padding-left: 2em;
-    margin-top: .25em;
-}
-
-
 /* styles for the classes */
 .right {
     text-align: right;
@@ -151,111 +161,6 @@ td, th {
 
 .error {
     color: red;
-}
-
-/* styles for the ids */
-#category_table form {
-    margin: 0;
-}
-#category_table td {
-    margin: 0;
-    padding: .15em .5em 0 0;
-}
-#add_category_form {
-    margin: 0;
-}
-#add_category_form input {
-    margin-right: .5em;  
-}
-
-#add_admin_user_form label {
-    width: 8.5em;
-}
-
-#edit_and_delete_buttons {
-    margin-bottom: .5em;
-}
-#edit_and_delete_buttons form {
-    display: inline;
-}
-
-#image_manager input {
-    margin: .25em;
-}
-.product_image_column {
-    height: 10px;
-    width: 10px;
-    text-align: center;
-    opacity: 0.5;
-    border-radius: 50%;
-}
-
-#add_to_cart_form {
-    margin: .25em;
-}
-#add_to_cart_form input {
-    float: none;
-}
-
-#cart {
-    margin: 0;
-    padding: 1em .25em;
-    border-collapse: collapse;
-    width: 100%;
-}
-#cart_header th {
-    border-bottom: 2px solid black;
-}
-#cart_footer td {
-    border-top: 2px solid black;
-    font-weight: bold;
-}
-
-#login_form {
-    margin-top: .5em;
-}
-#login_form label {
-    text-align: left;
-    width: 5em;
-    padding-right: 1em;
-}
-#login_form input[text] {
-    background-color: red;
-}
-
-#register_form label {
-    width: 10em;
-}
-
-#edit_account_form label {
-    width: 9em;
-}
-#payment_form label {
-    width: 8em;
-    padding-right: 1em;
-}
-#payment_form input[text] {
-    width: 5em;
-    margin: 0;
-    padding-right: 1em;
-}
-
-#add_category label {
-    text-align: left;
-    width: 3em;
-}
-#add_category input { 
-    margin-right: .25em;
-}
-
-#formatting_directions h2 {
-    padding-top: 1em;
-}
-#formatting_directions ul {    
-    list-style-type: disc;
-    margin-top: 0;
-    padding-left: 1em;
-    padding-bottom: 1em;
 }
 
 #copyright {
@@ -322,20 +227,19 @@ td, th {
     background-color: rgb(220, 0, 0);
 }
 
-
 #admin-button { 
-    color: white;
-    background-color: teal;
-    border-radius: 3px;
-    border-width: 2px;
-    border-color: rgb(0, 105, 105);
-    float: right;
-    margin-right: 10px;
+  color: white;
+  background-color: teal;
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: rgb(0, 105, 105);
+  float: right;
+  margin-right: 10px;
 }
 
 #admin-button:hover
 {
-    background-color:rgb(0, 105, 105);
+  background-color:rgb(0, 105, 105);
 }
 
 
@@ -423,95 +327,260 @@ td, th {
 
   /* Add a black background color to the top navigation bar */
 .topnav {
-    overflow: hidden;
-    background-color: whitesmoke;
-    width: 80%;
-  }
-  
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
+  overflow: hidden;
+  background-color: whitesmoke;
+  z-index: 10;
+  margin: inherit;
+  margin-bottom: 2px;
+  border-bottom: 3px solid teal;
+}
 
-  .topnav a.link {
-    float: left;
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+  color: teal;
+  margin-top: 40px;
+  margin-inline-start: 10px;
+  font-family: 'Lucida Sans';
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 27px;
+  margin-right: 16px;
+  font-size: 17px;
+  float: right;
+  background-color: whitesmoke;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav input[type=text] {
+    float: none;
     display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    margin-top: 30px;
-    margin-inline-start: 30px;
-    z-index: 2;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
   }
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  /* Style the "active" element to highlight the current page */
-  .topnav a.active {
-      margin-top: 10px;
-    background-color: whitesmoke;
-    color: black;
-  }
-  
-  /* Style the search box inside the navigation bar */
   .topnav input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
+    border: 1px solid #ccc;
   }
-  
-  /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-  @media screen and (max-width: 600px) {
-    .topnav a, .topnav input[type=text] {
-      float: none;
-      display: block;
-      text-align: left;
-      width: 100%;
-      margin: 0;
-      padding: 14px;
-    }
-    .topnav input[type=text] {
-      border: 1px solid #ccc;
-    }
-  }
+}
+
+.sticky2 {
+  position: fixed;
+  top: 0;
+  width: 80%;
+}
+
+.buttons {
+  width: 80%;
+  height: 50px;
+  margin: auto;
+  padding: 10px;
+}
+.myButton1 {
+  background-color: teal;
+  border-style: groove;
+  border: none;
+  margin-top: 27px;
+  width: 8%;
+  height: 27px;
+  float: right;
+  margin-right: 150px;
+  margin-left: 3px;
+}
+
+.myButton2 {
+  background-color: teal;
+  border: none;
+  margin-top: 27px;
+  width: 8%;
+  height: 27px;
+  float: right;
+  margin-right: 20px;
+  margin-left: 3px;
+}
+
+.searchbar {
+  margin-top: 27px;
+  float: none;
+}
+
+.submit {
+  float: right;
+  margin-top: 25px;
+  margin-right: 2px;
+  background: teal url(http://www.famfamfam.com/lab/icons/silk/icons/zoom.png) 10px 10px no-repeat;
+  border: 1px solid #d9d9d9;
+  padding: 10px 10px 10px 30px;
+}
 
 
-  .sticky {
-    position: fixed;
-    top: 0;
-    width: 100%
-  }
-  
-  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-  .sticky + .body {
-    padding-top: 102px;
-  }
 
-  .top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 320px;
-    height: 60px;
+
+
+/*stuff for login modal*/
+
+#form {
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+#form input[type=text], input[type=password] {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+position: relative ;
+}
+
+/* Set a style for all buttons */
+#button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+}
+
+/* Add a hover effect for buttons */
+#button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+  width: 30%;
+  height: 30%;
+  max-width: 300px;
+  border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
   }
-  
-  .top {
-    height: 250px; /* Space in here for search */
-    padding-top: 40px;
-    position: relative;
+  .cancelbtn {
+    width: 50%;
   }
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width:100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  /* Position it in the top right corner outside of the modal */
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+.profile_picture
+{
+  border-radius: 50%;
+  max-height: 20%;
+  max-width: 20%;
+  margin-top: 10px;
+}

@@ -6,6 +6,7 @@
     $date_joined = $user['date_created'];
     $followers = $user['followers'];
     $following = $user['following'];
+    $picture = $user['profile_picture'];
 
     if (isset($_SESSION['user']))
     {
@@ -24,10 +25,12 @@
     echo make_admin($user_id);
 ?>
 
-<img src="//" alt="profile picture for user" style="border-radius: 50%; display: inline-block;">
-<h1 ><?php echo $username ?></h1>
-<h3>karma: <?php echo $karma ?>  following: <?php echo $following; ?> followers: <?php echo $followers ?> </h3>
+<img src="<?php echo $picture ?>" alt="profile picture for user" class="profile_picture">
+<h1><?php echo $username ?></h1>
+<h3>karma: <?php echo $karma ?> following: <?php echo $following; ?> followers: <?php echo $followers ?> </h3>
 <h6>date created: <?php echo $date_joined ?></h6>
+
+<?php echo change_image($user_id, $picture) ?>
 
 
 <?php if(isset($_SESSION['user']) && $user_id == $userme)

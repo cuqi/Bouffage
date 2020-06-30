@@ -7,7 +7,6 @@ require_once('../utils/main.php');
 if (isset($_SESSION['user'])) 
 {
     $connected_user = $_SESSION['user'];
-    echo "inside session";
 }
 else
 {
@@ -42,6 +41,10 @@ else
     {
         if($typeOfPost == "User")
         {
+            if($postID == get_id_from_email($_SESSION['user'])['user_id'])
+            {
+                session_destroy();
+            }
             delete_user($postID);
             header("Refresh: 0"); //tuka ako stoi istiot kod kje ima prob koa kje go vrakja na url so ne postoi
         }

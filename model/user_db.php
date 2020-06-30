@@ -144,16 +144,17 @@ function is_valid_email($entered_email) {
     return $valid;
 }
 
-function add_user_to_db($email, $password, $username) {
+function add_user_to_db($email, $password, $username, $profile_picture) {
     global $db;
     $password = sha1($email . $password);
     $query = '
-        INSERT INTO user (email, password, username)
-        VALUES (:email, :password, :username)';
+        INSERT INTO user (email, password, username, profile_picture)
+        VALUES (:email, :password, :username, :profile_picture)';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->bindValue(':password', $password);
     $statement->bindValue(':username', $username);
+    $statement->bindValue(':profile_picture', $profile_picture);
     $statement->execute();
     $customer_id = $db->lastInsertId();
     $statement->closeCursor();
@@ -220,6 +221,51 @@ function does_user_exist($searchedID) {
     $valid = ($statement->rowCount() == 1);
     $statement->closeCursor();
     return $valid;
+}
+
+function make_this_user_admin($user_to_be_adminID) {
+    global $db;
+    $query = '
+        UPDATE `user`
+        SET `role` = :admin 
+        WHERE `user_id` = :user_to_be_adminID
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':admin', "Admin");
+    $statement->bindValue(':user_to_be_adminID', $user_to_be_adminID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function make_this_user_user($user_to_be_adminID) {
+    global $db;
+    $query = '
+        UPDATE `user`
+        SET `role` = :user 
+        WHERE `user_id` = :user_to_be_adminID
+    ';
+    $db->prepare($query);
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user', "User");
+    $statement->bindValue(':user_to_be_adminID', $user_to_be_adminID);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function change_picture($profile_picture, $user_id)
+{
+    global $db;
+    $query = "
+            UPDATE user 
+            SET profile_picture= :profile_picture
+            WHERE user_id = :user_id
+    ";
+    $statement = $db->prepare($query);
+    $statement->bindValue(':user_id', $user_id);
+    $statement->bindValue(':profile_picture', $profile_picture);
+    $statement->execute();
+    $statement->closeCursor();
 }
 
 ?>

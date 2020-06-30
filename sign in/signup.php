@@ -4,7 +4,7 @@
 <div id="signup" class="modal">
   <span onclick="document.getElementById('signup').style.display='none'" class="close" title="Close Modal">&times;</span>
   <!-- Modal Content -->
-  <form class="modal-content animate" id = "container" action="/bouffage/sign%20in  /create_user.php" method="POST">
+  <form class="modal-content animate" id = "container" action="/bouffage/sign%20in  /create_user.php" method="POST" enctype="multipart/form-data">
     <section class= "row">
       <div class="column">
         <div class="container left">
@@ -21,7 +21,8 @@
         </div>
         <div class="column">
           <div class="container left">
-            <h1>i am verry sorry to hear that you are not a part of this website</h1>
+            <label for="profile_picture"><b>Upload avatar: </b></label>
+            <input type="file" name="profile_picture" id="profile_picture">
             <h2>Please create an account</h2>
             <button type="submit">Sign up</button>
           </div>
@@ -33,7 +34,7 @@
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
-<script>
+<!-- <script>
 // Get the modal
 var signup = document.getElementById('signup');
 
@@ -43,5 +44,5 @@ window.onclick = function(event) {
     signup.style.display = "none";
   }
 }
-</script>
+</script> -->
 </div>
