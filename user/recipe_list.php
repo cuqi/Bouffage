@@ -7,7 +7,7 @@
 <div id = "separator"></div>
 <br>
     <?php if (count($recipes) == 0) : ?>
-        <p>There are no recipes for this category.</p>
+        <p>This user has no recipes posted.</p>
     <?php else : ?>
             <?php foreach ($recipes as $recipe) : 
                 include '../recipe/fetch_recipe_info.php';

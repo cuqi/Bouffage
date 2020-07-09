@@ -146,7 +146,15 @@ function make_admin($userID)
     
 function change_image($userID, $picture)
 {
-    $user_id = get_id_from_email($_SESSION['user'])['user_id'];
+
+    if(isset($_SESSION['user']))
+    {
+        $user_id = get_id_from_email($_SESSION['user'])['user_id'];
+    }
+    else
+    {
+        $user_id = -1;
+    }
     $html = "";
 
     if ($user_id == $userID)
