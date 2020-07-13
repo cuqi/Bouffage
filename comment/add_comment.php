@@ -23,9 +23,11 @@ if (isset($_SESSION['user']))
         add_comment($comment, $typeq, $userme, $recipe);
     }
 
-    $previous = "javascript:history.back()";
-    header("Location: $previous");
-    header("Refresh:0");
+    ?>
+    <script>
+      window.history.go(-1);
+      </script>
+    <?php
 
 }
 else
